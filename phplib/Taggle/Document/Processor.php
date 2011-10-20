@@ -2,5 +2,5 @@
 
 interface Taggle_Document_Processor {
 
-    function process($document, $ref_id=null);
+    function process($filename, $ref_id=null);
 }
