@@ -1,6 +1,6 @@
 <?php
 
-interface Store_Factory {
+interface Taggle_Store_Factory {
 
     function create();
 }
