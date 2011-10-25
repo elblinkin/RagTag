@@ -2,7 +2,7 @@
 
 class Taggle_PHP_Log_Processor_Level_Other implements Taggle_PHP_Log_Processor_Level {
 
-    const REGEX = '@\[(.*)\] \[(.*)\] \[(.*)\] \[(.*)\] \[(.*)\] \[(.*)\] (.*)@';
+    const REGEX = '@\[([^\]]+)\] \[([^\]]+)\] \[([^\]]+)\] \[([^\]]+)\] \[([^\]]+)\] \[([^\]]+)\] (.*)@';
     
     const LOG_DATE = 1;
     const LOG_ID = 2;
@@ -32,11 +32,11 @@ class Taggle_PHP_Log_Processor_Level_Other implements Taggle_PHP_Log_Processor_L
             $document->source->file = $file_line[0];
             $document->source->line = $file_line[1];
            
-           $document->log_message = $matches[self::LOG_MESSAGE];
+            $document->log_message = $matches[self::LOG_MESSAGE];
         
-           foreach ($this->message_processors as $message_processor) {
-               $message_processor->process($document);
-           }
+            foreach ($this->message_processors as $message_processor) {
+                $message_processor->process($document);
+            }
         }
     }
 }

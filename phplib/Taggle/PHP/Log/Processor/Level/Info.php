@@ -2,7 +2,7 @@
 
 class Taggle_PHP_Log_Processor_Level_Info implements Taggle_PHP_Log_Processor_Level {
 
-    const INFO_REGEX = '@\[(.*)\] \[(.*)\] \[info\] \[(.*)\] \[(.*)\] (.*)@';
+    const INFO_REGEX = '@\[([^\]]+)\] \[([^\]]+)\] \[info\] \[([^\]]+)\] \[([^\]]+)\] (.*)@';
     
     const LOG_DATE = 1;
     const LOG_ID = 2;

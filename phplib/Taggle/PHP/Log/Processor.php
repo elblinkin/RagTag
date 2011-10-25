@@ -4,13 +4,16 @@ class Taggle_PHP_Log_Processor implements Taggle_Document_Processor {
 
     private $level_processors;
     private $store;
+    private $taggle_type;
 
     function __construct(
         array $level_processors,
-        Taggle_Store $store
+        Taggle_Store $store,
+        $taggle_type = 'php_log'
     ) {
         $this->level_processors = $level_processors;
         $this->store = $store;
+        $this->taggle_type = $taggle_type;
     }
     
     function process($document, $ref_id=null) {
@@ -20,7 +23,7 @@ class Taggle_PHP_Log_Processor implements Taggle_Document_Processor {
             $document = new StdClass;
             $document->raw = $line;
             $document->ref_id = $ref_id;
-            $document->taggle_type = 'php_infolog';
+            $document->taggle_type = $this->taggle_type;
             
             foreach ($this->level_processors as $level_processor) {
                 $level_processor->process($line, $document);
