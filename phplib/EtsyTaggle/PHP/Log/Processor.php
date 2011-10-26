@@ -1,6 +1,6 @@
 <?php
 
-class Taggle_PHP_Log_Processor implements Taggle_Document_Processor {
+class EtsyTaggle_PHP_Log_Processor implements Taggle_Document_Processor {
 
     private $level_processors;
     private $store;

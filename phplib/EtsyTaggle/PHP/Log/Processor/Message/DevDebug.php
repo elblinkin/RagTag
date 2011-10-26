@@ -1,6 +1,6 @@
 <?php
 
-class Taggle_PHP_Log_Processor_Message_DevDebug implements Taggle_PHP_Log_Processor_Message {
+class EtsyTaggle_PHP_Log_Processor_Message_DevDebug implements EtsyTaggle_PHP_Log_Processor_Message {
 
     function process(&$document) {
        if ($document->log_namespace === 'DEV_DEBUG') {

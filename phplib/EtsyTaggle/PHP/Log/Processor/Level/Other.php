@@ -1,6 +1,6 @@
 <?php
 
-class Taggle_PHP_Log_Processor_Level_Other implements Taggle_PHP_Log_Processor_Level {
+class EtsyTaggle_PHP_Log_Processor_Level_Other implements EtsyTaggle_PHP_Log_Processor_Level {
 
     const REGEX = '@\[([^\]]+)\] \[([^\]]+)\] \[([^\]]+)\] \[([^\]]+)\] \[([^\]]+)\] \[([^\]]+)\] (.*)@';
     
