@@ -18,7 +18,7 @@ class Raggle_Scm_Git_Action_Validate {
     }
     
     function execute(
-        Raggle_Scm_Repository_Git $git,
+        Raggle_Scm_Repository_Git $git
     ) {
         $repo_dir = $this->root_dir . '/' . $git->getName();
         $this->exec->execute(
