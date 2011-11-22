@@ -16,7 +16,7 @@ class Raggle_Scm_Git_Action_Clean {
     function execute(
         Raggle_Scm_Repository_Git $git
     ) {
-        $repo_dir = $root_dir . '/' . $git->getName();
-        $exec->execute("cd $repo_dir; git clean -fdx");
+        $repo_dir = $this->root_dir . '/' . $git->getName();
+        $this->exec->execute("cd $repo_dir; git clean -fdx");
     }
 }

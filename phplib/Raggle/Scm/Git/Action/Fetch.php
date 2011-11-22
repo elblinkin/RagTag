@@ -14,6 +14,7 @@ class Raggle_Scm_Git_Action_Fetch {
     }
     
     function execute(Raggle_Scm_Repository_Git $git) {
-    
+        $repo_dir = $this->root_dir . '/' . $git->getName();
+        $this->exec->execute("git fetch -t $repo_dir");
     }
 }

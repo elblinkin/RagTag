@@ -7,6 +7,10 @@ class Raggle_Logger {
     }
     
     function logInfo($message) {
-        print $message;
+        // TODO Implement logging
+    }
+    
+    function logError($message) {
+        // TODO Implement logging
     }
 }

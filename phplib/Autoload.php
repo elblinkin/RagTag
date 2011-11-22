@@ -1,6 +1,8 @@
 <?php
 
-function __autoload($class_name) {
+function loader($class_name) {
     $path = str_replace('_', '/', $class_name);
     require_once $path . '.php';
 }
+
+spl_autoload_register('loader');

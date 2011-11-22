@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Autoload.php';
-
 class Raggle_Scm_Git_Action_Exists {
 
     private $root_dir;
@@ -22,6 +20,9 @@ class Raggle_Scm_Git_Action_Exists {
         if (!file_exists($repo_dir)) {
             $this->logger->logInfo("Directory does not exist: $repo_dir");
             return false;
+        } else if (!is_dir($repo_dir)) {
+            $this->logger->logInfo("Not a directory: $repo_dir");
+            return false;
         } else if (!file_exists($repo_dir . '/.git')) {
             $this->logger->logInfo("Directory is not a git repo: $repo_dir");
             return false;
@@ -30,17 +31,3 @@ class Raggle_Scm_Git_Action_Exists {
         return true;
     }
 }
-
-$logger = new Raggle_Logger();
-$git_exists = new Raggle_Scm_Git_Action_Exists(
-    '/Users/laurabethlincoln',
-    $logger
-);
-$git = new Raggle_Scm_Repository_Git('Raggle', 'git@github.etsycorp.com:llincoln/Taggle.git', 'master');
-echo $git_exists->execute($git) . "\n";
-
-$git = new Raggle_Scm_Repository_Git('Temp', 'git@github.etsycorp.com:llincoln/Taggle.git', 'master');
-echo $git_exists->execute($git) . "\n";
-
-$git = new Raggle_Scm_Repository_Git('Taggle', 'git@github.etsycorp.com:llincoln/Taggle.git', 'master');
-echo $git_exists->execute($git) . "\n";
