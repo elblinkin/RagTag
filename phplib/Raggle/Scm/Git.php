@@ -25,17 +25,17 @@ class Raggle_Scm_Git {
         $this->logger = $logger;
     }
     
-    function checkout(Raggle_Scm_Repository $repo) {
+    function checkout($repo) {
         if (!($repo instanceof Raggle_Scm_Repository_Git)) {
             throw new InvalidArgumentException(
                 'Expected a Raggle_Scm_Repository_Git');
         }
         
         if (!$this->git_exists->execute($repo)) {
-            $this->logger->logInfo("Repo does not exist: $repo");
+            $this->logger->logInfo('Repo does not exist: ' . $repo->getName());
             $this->git_clone->execute($repo);
         } else if (!$git_validate->execute($repo)) {
-            $this->logger->logError("Invalid repo: $repo->getName()");
+            $this->logger->logError('Invalid repo: ' . $repo->getName());
             $this->git_clone->execute($repo);
         } else {
             $this->git_fetch->execute($repo);

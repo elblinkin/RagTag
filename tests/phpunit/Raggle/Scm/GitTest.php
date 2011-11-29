@@ -58,5 +58,22 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
         $repo = $this->getMock('Raggle_Scm_Repository');
         $this->git->checkout($repo);
     }
+    
+    function testCheckout_reportDoesNotExist() {
+        $repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->git_exists
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->will($this->returnValue(false));
+            
+        $this->git_clone
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->with($repo);
+            
+        $this->git->checkout($repo);
+    }
         
 }
