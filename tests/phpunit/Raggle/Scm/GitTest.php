@@ -59,7 +59,7 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
         $this->git->checkout($repo);
     }
     
-    function testCheckout_reportDoesNotExist() {
+    function testCheckout_repoDoesNotExist() {
         $repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
             ->disableOriginalConstructor()
             ->getMock();
@@ -75,5 +75,46 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
             
         $this->git->checkout($repo);
     }
-        
+    
+    function testCheckout_repoIsInvalid() {
+        $repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->git_exists
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->will($this->returnValue(true));
+        $this->git_validate
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->will($this->returnValue(false));
+            
+        $this->git_clone
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->with($repo);
+            
+        $this->git->checkout($repo);
+    }
+    
+    function testCheckout_repoExistsAndIsValid() {
+        $repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->git_exists
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->will($this->returnValue(true));
+        $this->git_validate
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->will($this->returnValue(true));
+            
+        $this->git_fetch
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->with($repo);
+            
+        $this->git->checkout($repo);
+    }
 }

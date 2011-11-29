@@ -34,7 +34,7 @@ class Raggle_Scm_Git {
         if (!$this->git_exists->execute($repo)) {
             $this->logger->logInfo('Repo does not exist: ' . $repo->getName());
             $this->git_clone->execute($repo);
-        } else if (!$git_validate->execute($repo)) {
+        } else if (!$this->git_validate->execute($repo)) {
             $this->logger->logError('Invalid repo: ' . $repo->getName());
             $this->git_clone->execute($repo);
         } else {
