@@ -19,17 +19,3 @@ class Raggle_Scm_Git_Factory {
         );   
     }
 }
-$logger = new Raggle_Logger();
-$exec = new Raggle_Exec($logger);
-$factory = new Raggle_Scm_Git_Factory();
-$git = $factory->create(
-    '/Users/laurabethlincoln',
-    $exec,
-    $logger
-);
-$repo = new Raggle_Scm_Repository_Git(
-    'SillyBandz',
-    'git://github.etsycorp.com/llincoln/DeveloperTesting101.git',
-    array('master')
-);
-$git->checkout($repo);

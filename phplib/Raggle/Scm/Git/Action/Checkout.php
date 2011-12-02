@@ -14,7 +14,8 @@ class Raggle_Scm_Git_Action_Checkout {
     }
     
     function execute(
-        Raggle_Scm_Repository_Git $repo
+        Raggle_Scm_Repository_Git $repo,
+        $output = null // DI for testing
     ) {
         $repo_dir = $this->root_dir . '/' . $repo->getName();
         $this->exec->execute("cd $repo_dir; git checkout -f");
