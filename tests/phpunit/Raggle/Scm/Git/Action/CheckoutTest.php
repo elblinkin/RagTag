@@ -1,7 +1,6 @@
 <?php
 
 require_once 'Autoload.php';
-require_once 'vfsStream/vfsStream.php';
 
 class Raggle_Scm_Git_Action_CheckoutTest extends PHPUnit_Framework_TestCase {
 
@@ -11,14 +10,13 @@ class Raggle_Scm_Git_Action_CheckoutTest extends PHPUnit_Framework_TestCase {
     
     protected function setUp() {
         parent::setUp();
-        vfsStream::setup('checkoutTest');
         
         $this->exec = $this->getMockBuilder('Raggle_Exec')
             ->disableOriginalConstructor()
             ->getMock();
         
         $this->git_checkout = new Raggle_Scm_Git_Action_Checkout(
-            vfsStream::url('checkoutTest'),
+            'checkoutTest',
             $this->exec
         );
         
@@ -46,7 +44,7 @@ class Raggle_Scm_Git_Action_CheckoutTest extends PHPUnit_Framework_TestCase {
         $this->exec
             ->expects($this->atLeastOnce())
             ->method('execute')
-            ->with('cd vfs://checkoutTest/GitRepo; git checkout -f');
+            ->with('cd checkoutTest/GitRepo; git checkout -f');
             
         $this->git_checkout->execute($this->git_repo);
     }
@@ -60,7 +58,7 @@ class Raggle_Scm_Git_Action_CheckoutTest extends PHPUnit_Framework_TestCase {
         $this->exec
             ->expects($this->atLeastOnce())
             ->method('execute')
-            ->with('cd vfs://checkoutTest/GitRepo; git checkout -f');
+            ->with('cd checkoutTest/GitRepo; git checkout -f');
             
         $this->git_checkout->execute($this->git_repo);
     }
@@ -78,11 +76,11 @@ class Raggle_Scm_Git_Action_CheckoutTest extends PHPUnit_Framework_TestCase {
         $this->exec
             ->expects($this->at(0))
             ->method('execute')
-            ->with('cd vfs://checkoutTest/GitRepo; git checkout -f');
+            ->with('cd checkoutTest/GitRepo; git checkout -f');
         $this->exec
             ->expects($this->at(1))
             ->method('execute')
-            ->with('cd vfs://checkoutTest/GitRepo; git branch');
+            ->with('cd checkoutTest/GitRepo; git branch');
             
         $this->git_checkout->execute($this->git_repo);
     }
@@ -97,11 +95,11 @@ class Raggle_Scm_Git_Action_CheckoutTest extends PHPUnit_Framework_TestCase {
         $this->exec
             ->expects($this->at(0))
             ->method('execute')
-            ->with('cd vfs://checkoutTest/GitRepo; git checkout -f');
+            ->with('cd checkoutTest/GitRepo; git checkout -f');
         $this->exec
             ->expects($this->at(1))
             ->method('execute')
-            ->with('cd vfs://checkoutTest/GitRepo; git branch', $expected_branch_ret);
+            ->with('cd checkoutTest/GitRepo; git branch', $expected_branch_ret);
             
         $this->git_checkout->execute($this->git_repo, $expected_branch_ret);
     }
@@ -116,15 +114,15 @@ class Raggle_Scm_Git_Action_CheckoutTest extends PHPUnit_Framework_TestCase {
         $this->exec
             ->expects($this->at(0))
             ->method('execute')
-            ->with('cd vfs://checkoutTest/GitRepo; git checkout -f');
+            ->with('cd checkoutTest/GitRepo; git checkout -f');
         $this->exec
             ->expects($this->at(1))
             ->method('execute')
-            ->with('cd vfs://checkoutTest/GitRepo; git branch', $expected_branch_ret);
+            ->with('cd checkoutTest/GitRepo; git branch', $expected_branch_ret);
         $this->exec
             ->expects($this->at(2))
             ->method('execute')
-            ->with('cd vfs://checkoutTest/GitRepo; git checkout -b master');
+            ->with('cd checkoutTest/GitRepo; git checkout -b master');
             
         $this->git_checkout->execute($this->git_repo, $expected_branch_ret);
     }

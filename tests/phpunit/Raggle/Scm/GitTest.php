@@ -9,8 +9,10 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
     private $git_clone;
     private $git_exists;
     private $git_fetch;
+    private $git_get_head_sha;
     private $git_validate;
     private $logger;
+    private $repo;
     
     private $git;
     
@@ -36,6 +38,10 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
         $this->git_fetch = $this->getMockBuilder('Raggle_Scm_Git_Action_Fetch')
             ->disableOriginalConstructor()
             ->getMock();
+            
+        $this->git_get_head_sha = $this->getMockBuilder('Raggle_Scm_Git_Action_GetHeadSha')
+            ->disableOriginalConstructor()
+            ->getMock();
         
         $this->git_validate = $this->getMockBuilder('Raggle_Scm_Git_Action_Validate')
             ->disableOriginalConstructor()
@@ -45,12 +51,17 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
             ->disableOriginalConstructor()
             ->getMock();
             
+        $this->repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+            ->disableOriginalConstructor()
+            ->getMock();
+            
         $this->git = new Raggle_Scm_Git(
             $this->git_checkout,
             $this->git_clean,
             $this->git_clone,
             $this->git_exists,
             $this->git_fetch,
+            $this->git_get_head_sha,
             $this->git_validate,
             $this->logger
         );
@@ -66,9 +77,6 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
     }
     
     function testCheckout_repoDoesNotExist() {
-        $repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
-            ->disableOriginalConstructor()
-            ->getMock();
         $this->git_exists
             ->expects($this->atLeastOnce())
             ->method('execute')
@@ -77,23 +85,20 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
         $this->git_clone
             ->expects($this->atLeastOnce())
             ->method('execute')
-            ->with($repo);
+            ->with($this->repo);
         $this->git_checkout
             ->expects($this->atLeastOnce())
             ->method('execute')
-            ->with($repo);
+            ->with($this->repo);
         $this->git_clean
             ->expects($this->atLeastOnce())
             ->method('execute')
-            ->with($repo);
+            ->with($this->repo);
             
-        $this->git->checkout($repo);
+        $this->git->checkout($this->repo);
     }
     
     function testCheckout_repoIsInvalid() {
-        $repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
-            ->disableOriginalConstructor()
-            ->getMock();
         $this->git_exists
             ->expects($this->atLeastOnce())
             ->method('execute')
@@ -106,23 +111,20 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
         $this->git_clone
             ->expects($this->atLeastOnce())
             ->method('execute')
-            ->with($repo);
+            ->with($this->repo);
         $this->git_checkout
             ->expects($this->atLeastOnce())
             ->method('execute')
-            ->with($repo);
+            ->with($this->repo);
         $this->git_clean
             ->expects($this->atLeastOnce())
             ->method('execute')
-            ->with($repo);
+            ->with($this->repo);
             
-        $this->git->checkout($repo);
+        $this->git->checkout($this->repo);
     }
     
     function testCheckout_repoExistsAndIsValid() {
-        $repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
-            ->disableOriginalConstructor()
-            ->getMock();
         $this->git_exists
             ->expects($this->atLeastOnce())
             ->method('execute')
@@ -135,16 +137,25 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
         $this->git_fetch
             ->expects($this->atLeastOnce())
             ->method('execute')
-            ->with($repo);
+            ->with($this->repo);
         $this->git_checkout
             ->expects($this->atLeastOnce())
             ->method('execute')
-            ->with($repo);
+            ->with($this->repo);
         $this->git_clean
             ->expects($this->atLeastOnce())
             ->method('execute')
-            ->with($repo);
+            ->with($this->repo);
             
-        $this->git->checkout($repo);
+        $this->git->checkout($this->repo);
+    }
+    
+    function testRevision() {
+        $this->git_get_head_sha
+            ->expects ($this->atLeastOnce())
+            ->method('execute')
+            ->with($this->repo);
+            
+        $this->git->revision($this->repo);
     }
 }

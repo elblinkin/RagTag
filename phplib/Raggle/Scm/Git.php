@@ -1,12 +1,13 @@
 <?php
 
-class Raggle_Scm_Git {
+class Raggle_Scm_Git implements Raggle_Scm {
 
     private $git_checkout;
     private $git_clean;
     private $git_clone;
     private $git_exists;
     private $git_fetch;
+    private $git_get_head_sha;
     private $git_validate;
     private $logger;
     
@@ -16,6 +17,7 @@ class Raggle_Scm_Git {
         Raggle_Scm_Git_Action_Clone $git_clone,
         Raggle_Scm_Git_Action_Exists $git_exists,
         Raggle_Scm_Git_Action_Fetch $git_fetch,
+        Raggle_Scm_Git_Action_GetHeadSha $git_get_head_sha,
         Raggle_Scm_Git_Action_Validate $git_validate,
         Raggle_Logger $logger
     ) {
@@ -24,8 +26,13 @@ class Raggle_Scm_Git {
         $this->git_clone = $git_clone;
         $this->git_exists = $git_exists;
         $this->git_fetch = $git_fetch;
+        $this->git_get_head_sha = $git_get_head_sha;
         $this->git_validate = $git_validate;
         $this->logger = $logger;
+    }
+    
+    function getName() {
+        return 'git';
     }
     
     function checkout($repo) {
@@ -46,5 +53,13 @@ class Raggle_Scm_Git {
         
         $this->git_clean->execute($repo);
         $this->git_checkout->execute($repo);
+    }
+    
+    function revision($repo) {
+        return $this->git_get_head_sha->execute($repo);
+    }
+    
+    function log($repo, $start_rev, $end_rev) {
+    
     }
 }
