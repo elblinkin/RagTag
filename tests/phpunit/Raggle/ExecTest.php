@@ -19,8 +19,12 @@ class Raggle_ExecTest extends PHPUnit_Framework_TestCase {
     function testExecute_defaults() {
         $this->logger
             ->expects($this->any())
-            ->method('logExec')
-            ->with('echo testing', array('testing'), 0);
+            ->method('logCommand')
+            ->with('echo testing');
+        $this->logger
+            ->expects($this->any())
+            ->method('logReturn')
+            ->with(array('testing'), 0);
             
         $this->exec->execute('echo testing');
     }
@@ -28,8 +32,12 @@ class Raggle_ExecTest extends PHPUnit_Framework_TestCase {
     function testExecute_captureOutput() {
         $this->logger
             ->expects($this->any())
-            ->method('logExec')
-            ->with('echo testing', array('testing'), 0);
+            ->method('logCommand')
+            ->with('echo testing');
+        $this->logger
+            ->expects($this->any())
+            ->method('logReturn')
+            ->with(array('testing'), 0);
             
         $this->exec->execute('echo testing', $output);
         $this->assertEquals(array('testing'), $output);
@@ -38,8 +46,12 @@ class Raggle_ExecTest extends PHPUnit_Framework_TestCase {
     function testExecute_captureReturnValue() {
         $this->logger
             ->expects($this->any())
-            ->method('logExec')
-            ->with('echo testing', array('testing'), 0);
+            ->method('logCommand')
+            ->with('echo testing');
+        $this->logger
+            ->expects($this->any())
+            ->method('logReturn')
+            ->with(array('testing'), 0);
             
         $this->exec->execute('echo testing', $output, $return_value);
         $this->assertEquals(0, $return_value);

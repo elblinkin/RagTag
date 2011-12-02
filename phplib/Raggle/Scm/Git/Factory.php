@@ -1,5 +1,6 @@
 <?php
 
+require_once 'Autoload.php';
 class Raggle_Scm_Git_Factory {
 
     public function create(
@@ -8,6 +9,7 @@ class Raggle_Scm_Git_Factory {
         Raggle_Logger $logger
     ) {
         return new Raggle_Scm_Git(
+            new Raggle_Scm_Git_Action_Checkout($root_dir, $exec),
             new Raggle_Scm_Git_Action_Clean($root_dir, $exec),
             new Raggle_Scm_Git_Action_Clone($root_dir, $exec),
             new Raggle_Scm_Git_Action_Exists($root_dir, $logger),
@@ -17,3 +19,17 @@ class Raggle_Scm_Git_Factory {
         );   
     }
 }
+$logger = new Raggle_Logger();
+$exec = new Raggle_Exec($logger);
+$factory = new Raggle_Scm_Git_Factory();
+$git = $factory->create(
+    '/Users/laurabethlincoln',
+    $exec,
+    $logger
+);
+$repo = new Raggle_Scm_Repository_Git(
+    'SillyBandz',
+    'git://github.etsycorp.com/llincoln/DeveloperTesting101.git',
+    array('master')
+);
+$git->checkout($repo);

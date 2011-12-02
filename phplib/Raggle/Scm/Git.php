@@ -2,6 +2,7 @@
 
 class Raggle_Scm_Git {
 
+    private $git_checkout;
     private $git_clean;
     private $git_clone;
     private $git_exists;
@@ -10,6 +11,7 @@ class Raggle_Scm_Git {
     private $logger;
     
     function __construct(
+        Raggle_Scm_Git_Action_Checkout $git_checkout,
         Raggle_Scm_Git_Action_Clean $git_clean,
         Raggle_Scm_Git_Action_Clone $git_clone,
         Raggle_Scm_Git_Action_Exists $git_exists,
@@ -17,6 +19,7 @@ class Raggle_Scm_Git {
         Raggle_Scm_Git_Action_Validate $git_validate,
         Raggle_Logger $logger
     ) {
+        $this->git_checkout = $git_checkout;
         $this->git_clean = $git_clean;
         $this->git_clone = $git_clone;
         $this->git_exists = $git_exists;
@@ -42,5 +45,6 @@ class Raggle_Scm_Git {
         }
         
         $this->git_clean->execute($repo);
+        $this->git_checkout->execute($repo);
     }
 }

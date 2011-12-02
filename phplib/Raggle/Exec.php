@@ -11,7 +11,8 @@ class Raggle_Exec {
     }
 
     function execute($command, &$output = null, &$return_var = null) {
+        $this->logger->logCommand($command);
         exec($command, $output, $return_var);
-        $this->logger->logExec($command, $output, $return_var);
+        $this->logger->logReturn($output, $return_var);
     }
 }

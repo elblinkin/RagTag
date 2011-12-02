@@ -4,6 +4,7 @@ require_once 'Autoload.php';
 
 class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
 
+    private $git_checkout;
     private $git_clean;
     private $git_clone;
     private $git_exists;
@@ -16,6 +17,10 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
     protected function setUp() {
         parent::setUp();
         
+        $this->git_checkout = $this->getMockBuilder('Raggle_Scm_Git_Action_Checkout')
+            ->disableOriginalConstructor()
+            ->getMock();
+            
         $this->git_clean = $this->getMockBuilder('Raggle_Scm_Git_Action_Clean')
             ->disableOriginalConstructor()
             ->getMock();
@@ -41,6 +46,7 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
             ->getMock();
             
         $this->git = new Raggle_Scm_Git(
+            $this->git_checkout,
             $this->git_clean,
             $this->git_clone,
             $this->git_exists,
@@ -72,6 +78,14 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
             ->expects($this->atLeastOnce())
             ->method('execute')
             ->with($repo);
+        $this->git_checkout
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->with($repo);
+        $this->git_clean
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->with($repo);
             
         $this->git->checkout($repo);
     }
@@ -93,6 +107,14 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
             ->expects($this->atLeastOnce())
             ->method('execute')
             ->with($repo);
+        $this->git_checkout
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->with($repo);
+        $this->git_clean
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->with($repo);
             
         $this->git->checkout($repo);
     }
@@ -111,6 +133,14 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
             ->will($this->returnValue(true));
             
         $this->git_fetch
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->with($repo);
+        $this->git_checkout
+            ->expects($this->atLeastOnce())
+            ->method('execute')
+            ->with($repo);
+        $this->git_clean
             ->expects($this->atLeastOnce())
             ->method('execute')
             ->with($repo);
