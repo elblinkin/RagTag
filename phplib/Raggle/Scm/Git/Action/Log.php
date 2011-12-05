@@ -45,4 +45,3 @@ class Raggle_Scm_Git_Action_Log {
     }
 
 }
-git log --name-only --pretty=format:"{'commit': '%H', 'author': {'name': '%aN', 'email': '%aE', 'date': '%at'}, 'committer': {'name': '%cN', 'email': '%cE', 'date': '%ct'}, 'message': '%s'}"
