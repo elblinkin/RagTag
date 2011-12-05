@@ -14,6 +14,7 @@ class Raggle_Scm_Git_Factory {
             new Raggle_Scm_Git_Action_Exists($root_dir, $logger),
             new Raggle_Scm_Git_Action_Fetch($root_dir, $exec),
             new Raggle_Scm_Git_Action_GetHeadSha($root_dir, $exec),
+            new Raggle_Scm_Git_Action_Log($root_dir, $exec),
             new Raggle_Scm_Git_Action_Validate($root_dir, $exec, $logger),
             $logger
         );   

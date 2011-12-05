@@ -10,6 +10,7 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
     private $git_exists;
     private $git_fetch;
     private $git_get_head_sha;
+    private $git_log;
     private $git_validate;
     private $logger;
     private $repo;
@@ -43,6 +44,10 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
             ->disableOriginalConstructor()
             ->getMock();
         
+        $this->git_log = $this->getMockBuilder('Raggle_Scm_Git_Action_Log')
+            ->disableOriginalConstructor()
+            ->getMock();
+        
         $this->git_validate = $this->getMockBuilder('Raggle_Scm_Git_Action_Validate')
             ->disableOriginalConstructor()
             ->getMock();
@@ -62,6 +67,7 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
             $this->git_exists,
             $this->git_fetch,
             $this->git_get_head_sha,
+            $this->git_log,
             $this->git_validate,
             $this->logger
         );
@@ -157,5 +163,32 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
             ->with($this->repo);
             
         $this->git->getRevision($this->repo);
+    }
+    
+    function testGetChangeLog_noRange() {
+        $this->git_log
+            ->expects ($this->atLeastOnce())
+            ->method('execute')
+            ->with($this->repo, null, null);
+            
+        $this->git->getChangeLog($this->repo);
+    }
+    
+    function testGetChangeLog_minRevision() {
+        $this->git_log
+            ->expects ($this->atLeastOnce())
+            ->method('execute')
+            ->with($this->repo, 'start', null);
+            
+        $this->git->getChangeLog($this->repo, 'start');
+    }
+    
+    function testGetChangeLog_range() {
+        $this->git_log
+            ->expects ($this->atLeastOnce())
+            ->method('execute')
+            ->with($this->repo, 'start', 'stop');
+            
+        $this->git->getChangeLog($this->repo, 'start', 'stop');
     }
 }

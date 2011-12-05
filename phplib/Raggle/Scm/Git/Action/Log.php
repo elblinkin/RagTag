@@ -7,7 +7,7 @@ class Raggle_Scm_Git_Action_Log {
     
     function __construct(
         $root_dir,
-        RaggleExec $exec
+        Raggle_Exec $exec
     ) {
         $this->root_dir = $root_dir;
         $this->exec = $exec;

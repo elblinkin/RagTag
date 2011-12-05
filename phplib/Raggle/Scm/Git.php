@@ -8,6 +8,7 @@ class Raggle_Scm_Git implements Raggle_Scm {
     private $git_exists;
     private $git_fetch;
     private $git_get_head_sha;
+    private $git_log;
     private $git_validate;
     private $logger;
     
@@ -18,6 +19,7 @@ class Raggle_Scm_Git implements Raggle_Scm {
         Raggle_Scm_Git_Action_Exists $git_exists,
         Raggle_Scm_Git_Action_Fetch $git_fetch,
         Raggle_Scm_Git_Action_GetHeadSha $git_get_head_sha,
+        Raggle_Scm_Git_Action_Log $git_log,
         Raggle_Scm_Git_Action_Validate $git_validate,
         Raggle_Logger $logger
     ) {
@@ -27,6 +29,7 @@ class Raggle_Scm_Git implements Raggle_Scm {
         $this->git_exists = $git_exists;
         $this->git_fetch = $git_fetch;
         $this->git_get_head_sha = $git_get_head_sha;
+        $this->git_log = $git_log;
         $this->git_validate = $git_validate;
         $this->logger = $logger;
     }
@@ -59,7 +62,7 @@ class Raggle_Scm_Git implements Raggle_Scm {
         return $this->git_get_head_sha->execute($repo);
     }
     
-    function getChangeLog($repo, $start_rev, $end_rev) {
-    
+    function getChangeLog($repo, $start_revision = null, $end_revision = null) {
+        return $this->git_log->execute($repo, $start_revision, $end_revision);
     }
 }
