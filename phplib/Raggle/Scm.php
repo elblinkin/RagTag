@@ -6,7 +6,7 @@ interface Raggle_Scm {
     
     function checkout($repo);
     
-    function revision($repo);
+    function getRevision($repo);
     
-    function log($repo, $start_rev, $end_rev);
+    function getChangeLog($repo, $start_rev, $end_rev);
 }

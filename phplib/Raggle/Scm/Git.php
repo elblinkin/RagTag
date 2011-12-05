@@ -55,11 +55,11 @@ class Raggle_Scm_Git implements Raggle_Scm {
         $this->git_checkout->execute($repo);
     }
     
-    function revision($repo) {
+    function getRevision($repo) {
         return $this->git_get_head_sha->execute($repo);
     }
     
-    function log($repo, $start_rev, $end_rev) {
+    function getChangeLog($repo, $start_rev, $end_rev) {
     
     }
 }

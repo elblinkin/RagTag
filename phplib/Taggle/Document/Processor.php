@@ -2,5 +2,9 @@
 
 interface Taggle_Document_Processor {
 
-    function process($filename, $ref_id=null);
+    /**
+     * @param string|array $input file or array to be processed into logs.
+     * @param string [$ref_id] id to relate multiple logs with.
+     */
+    function process($input, $ref_id=null);
 }

@@ -150,12 +150,12 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
         $this->git->checkout($this->repo);
     }
     
-    function testRevision() {
+    function testGetRevision() {
         $this->git_get_head_sha
             ->expects ($this->atLeastOnce())
             ->method('execute')
             ->with($this->repo);
             
-        $this->git->revision($this->repo);
+        $this->git->getRevision($this->repo);
     }
 }
