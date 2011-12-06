@@ -26,12 +26,12 @@ class Raggle_Scm_Git_Action_Log {
                 $revision_range .= $max_revision;
             }
         }
-        $format = "\"{"
-            . "'commit': '%H', "
-            . "'author': {'name': '%aN', 'email': '%aE', 'date': '%at'}, "
-            . "'committer': {'name': '%cN', 'email': '%cE', 'date': '%ct'}, "
-            . "'message': '%s'"
-            . "}\"";
+        $format = '"{'
+            . '"commit": "%H", '
+            . '"author": {"name": "%aN", "email": "%aE", "date": "%at"}, '
+            . '"committer": {"name": "%cN", "email": "%cE", "date": "%ct"}, '
+            . '"message": "%s"'
+            . '}"';
             
         $this->exec->execute(
             "cd $repo_dir;"
