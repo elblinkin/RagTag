@@ -26,16 +26,16 @@ class Raggle_Scm_Repository_Git_Builder {
             throw new UnexpectedValueException('$name must not be null');
         }
         if (!isset($this->url)) {
-            throw new UnexpectedValueException('Must sepeci');
+            throw new UnexpectedValueException('Must specify repository url');
         }
         if (!isset($this->branches) || empty($this->branches)) {
             throw new UnexpectedValueException('Must specify at least one branch');
         }
         
         return new Raggle_Scm_Repository_Git(
-            $name,
-            $url,
-            $branches
+            $this->name,
+            $this->url,
+            $this->branches
         );
     }
 }
