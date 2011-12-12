@@ -32,10 +32,16 @@ class Raggle_Scm_Repository_Git_Builder {
             throw new UnexpectedValueException('Must specify at least one branch');
         }
         
-        return new Raggle_Scm_Repository_Git(
+        $git = new Raggle_Scm_Repository_Git(
             $this->name,
             $this->url,
             $this->branches
         );
+        
+        unset($this->name);
+        unset($this->url);
+        unset($this->branches);
+        
+        return $git;
     }
 }
