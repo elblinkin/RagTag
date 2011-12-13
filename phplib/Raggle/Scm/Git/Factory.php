@@ -1,8 +1,8 @@
 <?php
 
-class Raggle_Scm_Git_Factory {
+class Raggle_Scm_Git_Factory implements Raggle_Scm_Factory {
 
-    public function create(
+    function create(
         $root_dir,
         Raggle_Exec $exec,
         Raggle_Logger $logger
