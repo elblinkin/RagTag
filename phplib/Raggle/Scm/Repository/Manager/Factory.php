@@ -20,7 +20,7 @@ class Raggle_Scm_Repository_Manager_Factory {
                 throw new Exception();
             }
             $repository = $this->repository_parser->parse($entry);
-            $name = repository->getName();
+            $name = $repository->getName();
             $repository_map[$name] = $repository;
         }
         
