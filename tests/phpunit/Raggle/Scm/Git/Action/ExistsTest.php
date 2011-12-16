@@ -13,7 +13,9 @@ class Raggle_Scm_Git_Action_ExistsTest extends PHPUnit_Framework_TestCase {
         parent::setUp();
         vfsStream::setup('existsTest');
         
-        $this->logger = $this->getMock('Raggle_Logger');
+        $this->logger = $this->getMockBuilder('Raggle_Logger')
+            ->disableOriginalConstructor()
+            ->getMock();
         
         $this->git_exists = new Raggle_Scm_Git_Action_Exists(
             vfsStream::url('existsTest'),
