@@ -2,5 +2,5 @@
 
 interface Raggle_Printer {
 
-    function print($message);
+    function write($message);
 }

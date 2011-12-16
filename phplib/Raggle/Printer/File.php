@@ -8,7 +8,7 @@ class Raggle_Printer_File {
         $this->handle = $handle;
     }
     
-    function print($message) {
+    function write($message) {
         fwrite($this->handle, $message);
     }
 }

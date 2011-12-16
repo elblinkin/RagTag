@@ -8,7 +8,7 @@ class Raggle_Printer_Gearman implements Raggle_Printer {
         $this->job = $job;
     }
     
-    function print($message) {
+    function write($message) {
         $job->sendData($message);
     }
 }

@@ -29,7 +29,7 @@ class Raggle_Logger {
     
     function tee($message) {
         foreach ($this->printers as $printer) {
-            $printer->print($message);
+            $printer->write($message);
         }
     }
 }
