@@ -57,4 +57,23 @@ class Raggle_LoggerTest extends PHPUnit_Framework_TestCase {
             
         $this->logger->logError('This is an error message.');
     }
+    
+    function testLogError_teed() {
+        $printer_a = $this->getMock('Raggle_Printer');
+        $printer_b = $this->getMock('Raggle_Printer');
+        
+        $printer_a
+            ->expects($this->once())
+            ->method('write')
+            ->with("[ERROR] This is an error message.\n");
+        
+        $printer_b
+            ->expects($this->once())
+            ->method('write')
+            ->with("[ERROR] This is an error message.\n");
+         
+        $logger = new Raggle_Logger(array($printer_a, $printer_b));
+        
+        $logger->logError('This is an error message.');
+    }
 }
