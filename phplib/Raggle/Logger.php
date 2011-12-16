@@ -2,10 +2,10 @@
 
 class Raggle_Logger {
 
-    private $printer;
+    private $printers;
     
     function __construct(array $printers) {
-        $this->printer = $printer;
+        $this->printers = $printers;
     }
     
     function logCommand($command) {
@@ -27,7 +27,7 @@ class Raggle_Logger {
         $this->tee(sprintf("[ERROR] %s\n", $message));
     }
     
-    function tee($message) {
+    private function tee($message) {
         foreach ($this->printers as $printer) {
             $printer->write($message);
         }
