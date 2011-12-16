@@ -2,24 +2,34 @@
 
 class Raggle_Logger {
 
+    private $printer;
+    
+    function __construct(array $printers) {
+        $this->printer = $printer;
+    }
+    
     function logCommand($command) {
-        printf(" + %s\n", $command);
+        $this->tee(sprintf(" + %s\n", $command));
     }
 
     function logReturn($output, $return_var) {
         foreach ($output as $line) {
-            printf ("\t%s\n", $line);
+            $this->tee(sprintf("\t%s\n", $line));
         }
-        // TODO Implement logging
+        $this->tee(sprintf("\tReturn Value:  %s\n", $return_var));
     }
     
     function logInfo($message) {
-        printf("%s\n", $message);
-        // TODO Implement logging
+        $this->tee(sprintf("[INFO] %s\n", $message));
     }
     
     function logError($message) {
-        printf("%s\n", $message);
-        // TODO Implement logging
+        $this->tee(sprintf("[ERROR] %s\n", $message));
+    }
+    
+    function tee($message) {
+        foreach ($this->printers as $printer) {
+            $printer->print($message);
+        }
     }
 }
