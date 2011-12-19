@@ -4,7 +4,7 @@ class Raggle_Printer_File {
 
     private $handle;
     
-    function __construct(resource $handle) {
+    function __construct($handle) {
         $this->handle = $handle;
     }
     

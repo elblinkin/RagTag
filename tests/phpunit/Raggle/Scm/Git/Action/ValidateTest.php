@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Autoload.php';
+
 class Raggle_Scm_Git_Action_ValidateTest extends PHPUnit_Framework_TestCase {
 
     private $exec;
