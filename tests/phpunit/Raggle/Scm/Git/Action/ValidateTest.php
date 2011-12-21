@@ -65,7 +65,7 @@ class Raggle_Scm_Git_Action_ValidateTest extends PHPUnit_Framework_TestCase {
                 $this->git_repo,
                 array(
                     '* remote origin',
-                    '  Fetch URL: git@github.etsycorp.com:GitRepo.git',
+                    '  Fetch URL: git@github.com:GitRepo.git',
                 ),
                 0
             )
@@ -100,7 +100,7 @@ class Raggle_Scm_Git_Action_ValidateTest extends PHPUnit_Framework_TestCase {
                 array(
                     '* remote origin',
                     '  Fetch URL: git://localhost:GitRepo',
-                    '  Push  URL: git@github.etsycorp.com:llincoln/Taggle.git',
+                    '  Push  URL: git@github.com:llincoln/Taggle.git',
                     '  HEAD branch: master',
                     '  Remote branch:',
                 ),
@@ -120,7 +120,7 @@ class Raggle_Scm_Git_Action_ValidateTest extends PHPUnit_Framework_TestCase {
                 array(
                     '* remote origin',
                     '  Fetch URL: git://localhost:GitRepo',
-                    '  Push  URL: git@github.etsycorp.com:llincoln/Taggle.git',
+                    '  Push  URL: git@github.com:llincoln/Taggle.git',
                     '  HEAD branch: master',
                     '  Remote branch:',
                     '    something tracked',
@@ -142,7 +142,7 @@ class Raggle_Scm_Git_Action_ValidateTest extends PHPUnit_Framework_TestCase {
                 array(
                     '* remote origin',
                     '  Fetch URL: git://localhost:GitRepo',
-                    '  Push  URL: git@github.etsycorp.com:llincoln/Taggle.git',
+                    '  Push  URL: git@github.com:llincoln/Taggle.git',
                     '  HEAD branch: master',
                     '  Remote branch:',
                     '    master tracked',
@@ -159,7 +159,7 @@ class Raggle_Scm_Git_Action_ValidateTest extends PHPUnit_Framework_TestCase {
                 array(
                     '* remote origin',
                     '  Fetch URL: git://localhost:GitRepo',
-                    '  Push  URL: git@github.etsycorp.com:llincoln/Taggle.git',
+                    '  Push  URL: git@github.com:llincoln/Taggle.git',
                     '  HEAD branch: master',
                     '  Remote branch:',
                     '    master tracked',

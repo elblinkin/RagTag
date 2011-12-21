@@ -9,7 +9,7 @@ class Raggle_Scm_Repository_ParserTest extends PHPUnit_Framework_TestCase {
         $json = '{'
             . '"name": "web",'
             . '"type": "git",'
-            . '"url": "git://github.etsycorp.com/Engineering/Web.git",'
+            . '"url": "git://github.com/Engineering/Web.git",'
             . '"branches": [ "master" ]'
             . '}';
             
@@ -46,7 +46,7 @@ class Raggle_Scm_Repository_ParserTest extends PHPUnit_Framework_TestCase {
         $json = '{'
             . '"name": "web",'
             . '"type": "svn",'
-            . '"url": "svn://github.etsycorp.com/Engineering/Web",'
+            . '"url": "svn://github.com/Engineering/Web",'
             . '"branches": [ "master" ]'
             . '}';
             
@@ -74,7 +74,7 @@ class Raggle_Scm_Repository_ParserTest extends PHPUnit_Framework_TestCase {
         $json = '{'
             . '"name": "web",'
             . '"type": "git",'
-            . '"url": "git://github.etsycorp.com/Engineering/Web.git",'
+            . '"url": "git://github.com/Engineering/Web.git",'
             . '"branches": [ "master" ]'
             . '}';
             
