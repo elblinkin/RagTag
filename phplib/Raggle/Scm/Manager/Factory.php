@@ -23,7 +23,7 @@ class Raggle_Scm_Manager_Factory {
     function create() {
         $scm_map = array();
         foreach ($this->scm_factories as $scm_factory) {
-            $scm = $scm_factory->create($this->root_dir, $this0>exec, $this->logger);
+            $scm = $scm_factory->create($this->root_dir, $this->exec, $this->logger);
             $name = $scm->getName();
             $scm_map[$name] = $scm;
         }
