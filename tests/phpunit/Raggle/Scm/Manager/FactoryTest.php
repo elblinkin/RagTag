@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Autoload.php';
+
 class Raggle_Scm_Manager_FactoryTest extends PHPUnit_Framework_TestCase {
 
     private $root_dir;

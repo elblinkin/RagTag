@@ -16,10 +16,11 @@ class Raggle_Scm_Repository_Manager_Factory {
         
         $repository_map = array();
         while (($entry = readdir($handle)) !== false) {
-            if (!is_file($entry)) {
-                throw new Exception();
+            $file = $scm_config_directory . '/' . $entry;
+            if (!is_file($file)) {
+                throw new Exception('Must be a file: ' . $file);
             }
-            $repository = $this->repository_parser->parse($entry);
+            $repository = $this->repository_parser->parse($file);
             $name = $repository->getName();
             $repository_map[$name] = $repository;
         }
