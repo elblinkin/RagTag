@@ -1,20 +1,24 @@
 <?php
 
-class Raggle_Scm_Git_Action_GetHeadSha {
+namespace Raggle\Scm\Git\Action;
+use Raggle\Executor;
+use Raggle\Scm\Repository;
+
+class GetHeadSha {
 
     private $root_dir;
     private $exec;
     
     function __construct(
         $root_dir,
-        Raggle_Exec $exec
+        Executor $exec
     ) {
         $this->root_dir = $root_dir;
         $this->exec = $exec;
     }
     
     function execute(
-        Raggle_Scm_Repository_Git $repo,
+        Repository\Git $repo,
         $output = null // DI for testing
     ) {
         $repo_dir = $this->root_dir . '/' . $repo->getName();

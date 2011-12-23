@@ -1,9 +1,11 @@
 <?php
 
+namespace Raggle\Scm\Git\Action;
+
 require_once 'Autoload.php';
 require_once 'vfsStream/vfsStream.php';
 
-class Raggle_Scm_Git_Action_ExistsTest extends PHPUnit_Framework_TestCase {
+class ExistsTest extends \PHPUnit_Framework_TestCase {
 
     private $git_exists;
     private $logger;
@@ -11,18 +13,18 @@ class Raggle_Scm_Git_Action_ExistsTest extends PHPUnit_Framework_TestCase {
     
     protected function setUp() {
         parent::setUp();
-        vfsStream::setup('existsTest');
+        \vfsStream::setup('existsTest');
         
-        $this->logger = $this->getMockBuilder('Raggle_Logger')
+        $this->logger = $this->getMockBuilder('Raggle\Logger')
             ->disableOriginalConstructor()
             ->getMock();
         
-        $this->git_exists = new Raggle_Scm_Git_Action_Exists(
-            vfsStream::url('existsTest'),
+        $this->git_exists = new Exists(
+            \vfsStream::url('existsTest'),
             $this->logger
         );
         
-        $this->git_repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+        $this->git_repo = $this->getMockBuilder('Raggle\Scm\Repository\Git')
             ->disableOriginalConstructor()
             ->getMock();
             
@@ -37,20 +39,20 @@ class Raggle_Scm_Git_Action_ExistsTest extends PHPUnit_Framework_TestCase {
     }
     
     function testExecute_notDirectory() {
-        vfsStream::newFile('GitRepo')->at(vfsStreamWrapper::getRoot());
+        \vfsStream::newFile('GitRepo')->at(\vfsStreamWrapper::getRoot());
         
         $this->assertFalse($this->git_exists->execute($this->git_repo));
     }
     
     function testExecute_notGitDirectory() {
-        vfsStream::newDirectory('GitRepo')->at(vfsStreamWrapper::getRoot());
+        \vfsStream::newDirectory('GitRepo')->at(\vfsStreamWrapper::getRoot());
         
         $this->assertFalse($this->git_exists->execute($this->git_repo));
     }
     
     function testExecute_exists() {
-        $repo = vfsStream::newDirectory('GitRepo')->at(vfsStreamWrapper::getRoot());
-        vfsStream::newDirectory('.git')->at($repo);
+        $repo = \vfsStream::newDirectory('GitRepo')->at(\vfsStreamWrapper::getRoot());
+        \vfsStream::newDirectory('.git')->at($repo);
         
         $this->assertTrue($this->git_exists->execute($this->git_repo));
     }

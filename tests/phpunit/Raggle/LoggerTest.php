@@ -1,16 +1,18 @@
 <?php
 
+namespace Raggle;
+
 require_once 'Autoload.php';
 
-class Raggle_LoggerTest extends PHPUnit_Framework_TestCase {
+class LoggerTest extends \PHPUnit_Framework_TestCase {
 
     private $printer;
     private $logger;
     
     function setUp() {
         parent::setUp();
-        $this->printer = $this->getMock('Raggle_Printer');
-        $this->logger = new Raggle_Logger(array($this->printer));
+        $this->printer = $this->getMock('Raggle\Printer');
+        $this->logger = new Logger(array($this->printer));
     }
     
     function testLogCommand() {
@@ -59,8 +61,8 @@ class Raggle_LoggerTest extends PHPUnit_Framework_TestCase {
     }
     
     function testLogError_teed() {
-        $printer_a = $this->getMock('Raggle_Printer');
-        $printer_b = $this->getMock('Raggle_Printer');
+        $printer_a = $this->getMock('Raggle\Printer');
+        $printer_b = $this->getMock('Raggle\Printer');
         
         $printer_a
             ->expects($this->once())
@@ -72,7 +74,7 @@ class Raggle_LoggerTest extends PHPUnit_Framework_TestCase {
             ->method('write')
             ->with("[ERROR] This is an error message.\n");
          
-        $logger = new Raggle_Logger(array($printer_a, $printer_b));
+        $logger = new Logger(array($printer_a, $printer_b));
         
         $logger->logError('This is an error message.');
     }

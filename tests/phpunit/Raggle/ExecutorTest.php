@@ -1,19 +1,21 @@
 <?php
 
+namespace Raggle;
+
 require_once 'Autoload.php';
 
-class Raggle_ExecTest extends PHPUnit_Framework_TestCase {
+class ExecutorTest extends \PHPUnit_Framework_TestCase {
 
     private $logger;
     private $exec;
     
     protected function setUp() {
         parent::setUp();
-        $this->logger = $this->getMockBuilder('Raggle_Logger')
+        $this->logger = $this->getMockBuilder('Raggle\Logger')
             ->disableOriginalConstructor()
             ->getMock();
         
-        $this->exec = new Raggle_Exec($this->logger);
+        $this->exec = new Executor($this->logger);
     }
     
     function testExecute_defaults() {

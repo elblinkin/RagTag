@@ -1,10 +1,12 @@
 <?php
 
-class Raggle_Scm_Repository_Git_Parser {
+namespace Raggle\Scm\Repository;
+
+class Git_Parser {
 
     private $builder;
     
-    function __construct(Raggle_Scm_Repository_Git_Builder $builder) {
+    function __construct(Git_Builder $builder) {
         $this->builder = $builder;
     }
     

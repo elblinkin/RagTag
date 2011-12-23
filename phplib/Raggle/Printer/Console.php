@@ -1,6 +1,8 @@
 <?php
 
-class Raggle_Printer_Console implements Raggle_Printer {
+namespace Raggle\Printer;
+
+class Console implements \Raggle\Printer {
 
     function write($message) {
         print $message;

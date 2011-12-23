@@ -1,6 +1,11 @@
 <?php
 
-class Raggle_Scm_Git implements Raggle_Scm {
+namespace Raggle\Scm;
+use Raggle\Logger;
+use Raggle\Scm\Git\Action;
+use Raggle\Scm\Repository;
+
+class Git implements \Raggle\Scm {
 
     private $git_checkout;
     private $git_clean;
@@ -13,15 +18,15 @@ class Raggle_Scm_Git implements Raggle_Scm {
     private $logger;
     
     function __construct(
-        Raggle_Scm_Git_Action_Checkout $git_checkout,
-        Raggle_Scm_Git_Action_Clean $git_clean,
-        Raggle_Scm_Git_Action_Clone $git_clone,
-        Raggle_Scm_Git_Action_Exists $git_exists,
-        Raggle_Scm_Git_Action_Fetch $git_fetch,
-        Raggle_Scm_Git_Action_GetHeadSha $git_get_head_sha,
-        Raggle_Scm_Git_Action_Log $git_log,
-        Raggle_Scm_Git_Action_Validate $git_validate,
-        Raggle_Logger $logger
+        Action\Checkout $git_checkout,
+        Action\Clean $git_clean,
+        Action\CloneRepository $git_clone,
+        Action\Exists $git_exists,
+        Action\Fetch $git_fetch,
+        Action\GetHeadSha $git_get_head_sha,
+        Action\Log $git_log,
+        Action\Validate $git_validate,
+        Logger $logger
     ) {
         $this->git_checkout = $git_checkout;
         $this->git_clean = $git_clean;
@@ -39,8 +44,8 @@ class Raggle_Scm_Git implements Raggle_Scm {
     }
     
     function checkout($repo) {
-        if (!($repo instanceof Raggle_Scm_Repository_Git)) {
-            throw new InvalidArgumentException(
+        if (!($repo instanceof Repository\Git)) {
+            throw new \InvalidArgumentException(
                 'Expected a Raggle_Scm_Repository_Git');
         }
         

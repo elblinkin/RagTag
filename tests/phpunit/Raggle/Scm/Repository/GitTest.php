@@ -1,14 +1,16 @@
 <?php
 
+namespace Raggle\Scm\Repository;
+
 require_once 'Autoload.php';
 
-class Raggle_Scm_Repository_GitTest extends PHPUnit_Framework_TestCase {
+class GitTest extends \PHPUnit_Framework_TestCase {
 
     private $git_repo;
     
     protected function setUp() {
         parent::setUp();
-        $this->git_repo = new Raggle_Scm_Repository_Git(
+        $this->git_repo = new Git(
             'GitRepo',
             'git://localhost:GitRepo',
             array('master', 'branch')

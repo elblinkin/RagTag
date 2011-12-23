@@ -1,6 +1,8 @@
 <?php
 
-class Raggle_Scm_Repository_Parser {
+namespace Raggle\Scm\Repository;
+
+class Parser {
 
     private $parser_map;
     

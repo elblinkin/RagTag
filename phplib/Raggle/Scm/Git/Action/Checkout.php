@@ -1,20 +1,24 @@
 <?php
 
-class Raggle_Scm_Git_Action_Checkout {
+namespace Raggle\Scm\Git\Action;
+use Raggle\Executor;
+use Raggle\Scm\Repository;
+
+class Checkout {
 
     private $root_dir;
     private $exec;
     
     function __construct(
         $root_dir,
-        Raggle_Exec $exec
+        Executor $exec
     ) {
         $this->root_dir = $root_dir;
         $this->exec = $exec;
     }
     
     function execute(
-        Raggle_Scm_Repository_Git $repo,
+        Repository\Git $repo,
         $output = null // DI for testing
     ) {
         $repo_dir = $this->root_dir . '/' . $repo->getName();
@@ -25,7 +29,7 @@ class Raggle_Scm_Git_Action_Checkout {
             $this->exec->execute("cd $repo_dir; git branch", $output);
             $pieces = explode(' ', $output[0]);
             if ($pieces[0] != '*') {
-                throw new InvalidArgumentException('First should be current');
+                throw new \InvalidArgumentException('First should be current');
             }
             if ($pieces[1] != $branch) {
                 $this->exec->execute("cd $repo_dir; git checkout -b $branch");

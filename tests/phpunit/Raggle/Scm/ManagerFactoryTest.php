@@ -1,8 +1,10 @@
 <?php
 
+namespace Raggle\Scm;
+
 require_once 'Autoload.php';
 
-class Raggle_Scm_Manager_FactoryTest extends PHPUnit_Framework_TestCase {
+class ManagerFactoryTest extends \PHPUnit_Framework_TestCase {
 
     private $root_dir;
     private $exec;
@@ -11,32 +13,32 @@ class Raggle_Scm_Manager_FactoryTest extends PHPUnit_Framework_TestCase {
     function setUp() {
         parent::setUp();
         $this->root_dir = 'factoryTest';
-        $this->exec = $this->getMockBuilder('Raggle_Exec')
+        $this->exec = $this->getMockBuilder('Raggle\Executor')
             ->disableOriginalConstructor()
             ->getMock();
-        $this->logger = $this->getMockBuilder('Raggle_Logger')
+        $this->logger = $this->getMockBuilder('Raggle\Logger')
             ->disableOriginalConstructor()
             ->getMock();
     }
     
     function testCreate_nothing() {
-        $factory = new Raggle_Scm_Manager_Factory(
+        $factory = new ManagerFactory(
             $this->root_dir,
             $this->exec,
             $this->logger,
             array()
         );
-        $this->assertInstanceof('Raggle_Scm_Manager', $factory->create());
+        $this->assertInstanceof('Raggle\Scm\Manager', $factory->create());
     }
     
     function testCreate_oneSubFactory() {
-        $scm = $this->getMock('Raggle_Scm');
+        $scm = $this->getMock('Raggle\Scm');
         $scm
             ->expects($this->atLeastOnce())
             ->method('getName')
             ->will($this->returnValue('git'));
             
-        $sub_factory = $this->getMockBuilder('Raggle_Scm_Factory')
+        $sub_factory = $this->getMockBuilder('Raggle\ScmFactory')
             ->disableOriginalConstructor()
             ->getMock();
         $sub_factory
@@ -45,7 +47,7 @@ class Raggle_Scm_Manager_FactoryTest extends PHPUnit_Framework_TestCase {
             ->with($this->root_dir, $this->exec, $this->logger)
             ->will($this->returnValue($scm));
         
-        $factory = new Raggle_Scm_Manager_Factory(
+        $factory = new ManagerFactory(
             $this->root_dir,
             $this->exec,
             $this->logger,
@@ -56,13 +58,13 @@ class Raggle_Scm_Manager_FactoryTest extends PHPUnit_Framework_TestCase {
     }
     
     function testCreate_moreThanOneSubFactory() {
-        $scm_a = $this->getMock('Raggle_Scm');
+        $scm_a = $this->getMock('Raggle\Scm');
         $scm_a
             ->expects($this->atLeastOnce())
             ->method('getName')
             ->will($this->returnValue('git'));
             
-        $sub_factory_a = $this->getMockBuilder('Raggle_Scm_Factory')
+        $sub_factory_a = $this->getMockBuilder('Raggle\ScmFactory')
             ->disableOriginalConstructor()
             ->getMock();
         $sub_factory_a
@@ -71,13 +73,13 @@ class Raggle_Scm_Manager_FactoryTest extends PHPUnit_Framework_TestCase {
             ->with($this->root_dir, $this->exec, $this->logger)
             ->will($this->returnValue($scm_a));
             
-        $scm_b = $this->getMock('Raggle_Scm');
+        $scm_b = $this->getMock('Raggle\Scm');
         $scm_b
             ->expects($this->atLeastOnce())
             ->method('getName')
             ->will($this->returnValue('svn'));
             
-        $sub_factory_b = $this->getMockBuilder('Raggle_Scm_Factory')
+        $sub_factory_b = $this->getMockBuilder('Raggle\ScmFactory')
             ->disableOriginalConstructor()
             ->getMock();
         $sub_factory_b
@@ -86,7 +88,7 @@ class Raggle_Scm_Manager_FactoryTest extends PHPUnit_Framework_TestCase {
             ->with($this->root_dir, $this->exec, $this->logger)
             ->will($this->returnValue($scm_b));
         
-        $factory = new Raggle_Scm_Manager_Factory(
+        $factory = new ManagerFactory(
             $this->root_dir,
             $this->exec,
             $this->logger,

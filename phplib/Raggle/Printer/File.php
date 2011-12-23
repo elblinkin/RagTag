@@ -1,6 +1,8 @@
 <?php
 
-class Raggle_Printer_File {
+namespace Raggle\Printer;
+
+class File implements \Raggle\Printer {
 
     private $handle;
     

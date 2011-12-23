@@ -1,10 +1,14 @@
 <?php
 
-class Raggle_Scm_Git_Action_GetHeadShaTest extends PHPUnit_Framework_TestCase {
+namespace Raggle\Scm\Git\Action;
+
+require_once 'Autoload.php';
+
+class GetHeadShaTest extends \PHPUnit_Framework_TestCase {
 
     function testExecute() {
         $expected_sha = '3ee75a23bc81b5340ce1b3627e5a3516a471c796';
-        $exec = $this->getMockBuilder('Raggle_Exec')
+        $exec = $this->getMockBuilder('Raggle\Executor')
             ->disableOriginalConstructor()
             ->getMock();
         $exec
@@ -15,7 +19,7 @@ class Raggle_Scm_Git_Action_GetHeadShaTest extends PHPUnit_Framework_TestCase {
                 array($expected_sha)
             );
             
-        $repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+        $repo = $this->getMockBuilder('Raggle\Scm\Repository\Git')
             ->disableOriginalConstructor()
             ->getMock();
         $repo
@@ -23,7 +27,7 @@ class Raggle_Scm_Git_Action_GetHeadShaTest extends PHPUnit_Framework_TestCase {
             ->method('getName')
             ->will($this->returnValue('GitRepo'));
             
-        $git_get_head_sha = new Raggle_Scm_Git_Action_GetHeadSha(
+        $git_get_head_sha = new GetHeadSha(
             'getHeadShaTest',
             $exec
         );

@@ -1,19 +1,23 @@
 <?php
 
-class Raggle_Scm_Git_Action_Clone {
+namespace Raggle\Scm\Git\Action;
+use Raggle\Executor;
+use Raggle\Scm\Repository;
+
+class CloneRepository {
 
     private $root_dir;
     private $exec;
     
     function __construct(
         $root_dir,
-        Raggle_Exec $exec
+        Executor $exec
     ) {
         $this->root_dir = $root_dir;
         $this->exec = $exec;
     }
     
-    function execute(Raggle_Scm_Repository_Git $git) {
+    function execute(Repository\Git $git) {
         $repo_dir = $this->root_dir . '/' . $git->getName();
         $url = $git->getUrl();
         if (file_exists($repo_dir)) {

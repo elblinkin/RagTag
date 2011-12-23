@@ -1,11 +1,13 @@
 <?php
 
+namespace Raggle\Scm\Git\Action;
+
 require_once 'Autoload.php';
 
-class Raggle_Scm_Git_Action_CleanTest extends PHPUnit_Framework_TestCase {
+class CleanTest extends \PHPUnit_Framework_TestCase {
     
     function testExecute() {
-        $exec = $this->getMockBuilder('Raggle_Exec')
+        $exec = $this->getMockBuilder('Raggle\Executor')
             ->disableOriginalConstructor()
             ->getMock();
         $exec
@@ -13,7 +15,7 @@ class Raggle_Scm_Git_Action_CleanTest extends PHPUnit_Framework_TestCase {
             ->method('execute')
             ->with('cd cleanTest/GitRepo; git clean -fdx');
 
-        $git_repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+        $git_repo = $this->getMockBuilder('Raggle\Scm\Repository\Git')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -22,7 +24,7 @@ class Raggle_Scm_Git_Action_CleanTest extends PHPUnit_Framework_TestCase {
             ->method('getName')
             ->will($this->returnValue('GitRepo'));
             
-        $git_clean = new Raggle_Scm_Git_Action_Clean(
+        $git_clean = new Clean(
             'cleanTest',
             $exec
         );

@@ -1,20 +1,24 @@
 <?php
 
-class Raggle_Scm_Git_Action_Exists {
+namespace Raggle\Scm\Git\Action;
+use Raggle\Logger;
+use Raggle\Scm\Repository;
+
+class Exists {
 
     private $root_dir;
     private $logger;
     
     function __construct(
         $root_dir,
-        Raggle_Logger $logger
+        Logger $logger
     ) {
         $this->root_dir = $root_dir;
         $this->logger = $logger;
     }
     
     function execute(
-        Raggle_Scm_Repository_Git $git
+        Repository\Git $git
     ) {
         $repo_dir = $this->root_dir . '/' . $git->getName();
         if (!file_exists($repo_dir)) {

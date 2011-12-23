@@ -1,9 +1,11 @@
 <?php
 
+namespace Raggle\Scm\Repository;
+
 require_once 'Autoload.php';
 require_once 'vfsStream/vfsStream.php';
 
-class Raggle_Scm_Repository_ParserTest extends PHPUnit_Framework_TestCase {
+class ParserTest extends \PHPUnit_Framework_TestCase {
 
     function testParse() {
         $json = '{'
@@ -13,18 +15,18 @@ class Raggle_Scm_Repository_ParserTest extends PHPUnit_Framework_TestCase {
             . '"branches": [ "master" ]'
             . '}';
             
-        vfsStream::setup('parserTest');
-        vfsStream::newFile('gitRepo.json')
+        \vfsStream::setup('parserTest');
+        \vfsStream::newFile('gitRepo.json')
             ->withContent($json)
-            ->at(vfsStreamWrapper::getRoot());
+            ->at(\vfsStreamWrapper::getRoot());
         
-        $filename = vfsStream::url('parserTest/gitRepo.json');
+        $filename = \vfsStream::url('parserTest/gitRepo.json');
             
-        $repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+        $repo = $this->getMockBuilder('Raggle\Scm\Repository\Git')
             ->disableOriginalConstructor()
             ->getMock();
         
-        $sub_parser = $this->getMockBuilder('Raggle_Scm_Repository_Git_Parser')
+        $sub_parser = $this->getMockBuilder('Raggle\Scm\Repository\Git_Parser')
             ->disableOriginalConstructor()
             ->getMock();
         $sub_parser
@@ -33,7 +35,7 @@ class Raggle_Scm_Repository_ParserTest extends PHPUnit_Framework_TestCase {
             ->with(json_decode($json))
             ->will($this->returnValue($repo));
             
-        $parser = new Raggle_Scm_Repository_Parser(array('git' => $sub_parser));
+        $parser = new Parser(array('git' => $sub_parser));
         
         $this->assertEquals($repo, $parser->parse($filename));
     }
@@ -50,18 +52,18 @@ class Raggle_Scm_Repository_ParserTest extends PHPUnit_Framework_TestCase {
             . '"branches": [ "master" ]'
             . '}';
             
-        vfsStream::setup('parserTest');
-        vfsStream::newFile('gitRepo.json')
+        \vfsStream::setup('parserTest');
+        \vfsStream::newFile('gitRepo.json')
             ->withContent($json)
-            ->at(vfsStreamWrapper::getRoot());
+            ->at(\vfsStreamWrapper::getRoot());
         
-        $filename = vfsStream::url('parserTest/gitRepo.json');
+        $filename = \vfsStream::url('parserTest/gitRepo.json');
         
-        $sub_parser = $this->getMockBuilder('Raggle_Scm_Repository_Git_Parser')
+        $sub_parser = $this->getMockBuilder('Raggle\Scm\Repository\Git_Parser')
             ->disableOriginalConstructor()
             ->getMock();
             
-        $parser = new Raggle_Scm_Repository_Parser(array('git' => $sub_parser));
+        $parser = new Parser(array('git' => $sub_parser));
         
         $parser->parse($filename);
     }
@@ -78,14 +80,14 @@ class Raggle_Scm_Repository_ParserTest extends PHPUnit_Framework_TestCase {
             . '"branches": [ "master" ]'
             . '}';
             
-        vfsStream::setup('parserTest');
-        vfsStream::newFile('gitRepo.json')
+        \vfsStream::setup('parserTest');
+        \vfsStream::newFile('gitRepo.json')
             ->withContent($json)
-            ->at(vfsStreamWrapper::getRoot());
+            ->at(\vfsStreamWrapper::getRoot());
         
-        $filename = vfsStream::url('parserTest/gitRepo.json');
+        $filename = \vfsStream::url('parserTest/gitRepo.json');
             
-        $parser = new Raggle_Scm_Repository_Parser(array());
+        $parser = new Parser(array());
         
         $parser->parse($filename);
     }

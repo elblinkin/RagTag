@@ -1,6 +1,8 @@
 <?php
 
-interface Raggle_Printer {
+namespace Raggle;
+
+interface Printer {
 
     /**
      * Writes the message to whatever the underlying logging mechanism is.

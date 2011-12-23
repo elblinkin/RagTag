@@ -1,6 +1,8 @@
 <?php
 
-class Raggle_Scm_Repository_Manager {
+namespace Raggle\Scm\Repository;
+
+class Manager {
 
     private $repository_map;
     

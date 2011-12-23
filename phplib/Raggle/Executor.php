@@ -1,11 +1,13 @@
 <?php
 
-class Raggle_Exec {
+namespace Raggle;
+
+class Executor {
 
     private $logger;
     
     function __construct(
-        Raggle_Logger $logger
+        Logger $logger
     ) {
         $this->logger = $logger;
     }

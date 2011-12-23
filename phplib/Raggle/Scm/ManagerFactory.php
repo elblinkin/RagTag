@@ -1,6 +1,10 @@
 <?php
 
-class Raggle_Scm_Manager_Factory {
+namespace Raggle\Scm;
+use Raggle\Executor;
+use Raggle\Logger;
+
+class ManagerFactory {
 
     private $root_dir;
     private $exec;
@@ -10,8 +14,8 @@ class Raggle_Scm_Manager_Factory {
     
     function __construct(
         $root_dir,
-        Raggle_Exec $exec,
-        Raggle_Logger $logger,
+        Executor $exec,
+        Logger $logger,
         array $scm_factories
     ) {
         $this->root_dir = $root_dir;
@@ -27,6 +31,6 @@ class Raggle_Scm_Manager_Factory {
             $name = $scm->getName();
             $scm_map[$name] = $scm;
         }
-        return new Raggle_Scm_Manager($scm_map);
+        return new Manager($scm_map);
     }
 }

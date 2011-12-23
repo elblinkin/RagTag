@@ -1,8 +1,10 @@
 <?php
 
+namespace Raggle\Scm\Git\Action;
+
 require_once 'Autoload.php';
 
-class Raggle_Scm_Git_Action_CheckoutTest extends PHPUnit_Framework_TestCase {
+class CheckoutTest extends \PHPUnit_Framework_TestCase {
 
     private $git_checkout;
     private $exec;
@@ -11,16 +13,16 @@ class Raggle_Scm_Git_Action_CheckoutTest extends PHPUnit_Framework_TestCase {
     protected function setUp() {
         parent::setUp();
         
-        $this->exec = $this->getMockBuilder('Raggle_Exec')
+        $this->exec = $this->getMockBuilder('Raggle\Executor')
             ->disableOriginalConstructor()
             ->getMock();
         
-        $this->git_checkout = new Raggle_Scm_Git_Action_Checkout(
+        $this->git_checkout = new Checkout(
             'checkoutTest',
             $this->exec
         );
         
-        $this->git_repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+        $this->git_repo = $this->getMockBuilder('Raggle\Scm\Repository\Git')
             ->disableOriginalConstructor()
             ->getMock();
             

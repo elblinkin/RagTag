@@ -1,14 +1,16 @@
 <?php
 
+namespace Raggle\Scm\Repository;
+
 require_once 'Autoload.php';
 
-class Raggle_Scm_Repository_Git_BuilderTest extends PHPUnit_Framework_TestCase {
+class Git_BuilderTest extends \PHPUnit_Framework_TestCase {
 
     private $builder;
     
     function setUp() {
         parent::setUp();
-        $this->builder = new Raggle_Scm_Repository_Git_Builder();
+        $this->builder = new Git_Builder();
     }
     
     /**
@@ -53,7 +55,7 @@ class Raggle_Scm_Repository_Git_BuilderTest extends PHPUnit_Framework_TestCase {
     }
     
     function testBuild() {
-        $expected = new Raggle_Scm_Repository_Git(
+        $expected = new Git(
             'GitRepo',
             'git://localhost/GitRepo',
             array('master')

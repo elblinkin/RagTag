@@ -1,6 +1,8 @@
 <?php
 
-class Raggle_Scm_Repository_Git {
+namespace Raggle\Scm\Repository;
+
+class Git implements \Raggle\Scm\Repository {
 
     private $name;
     private $url;

@@ -1,11 +1,13 @@
 <?php
 
+namespace Raggle\Scm\Git\Action;
+
 require_once 'Autoload.php';
 
-class Raggle_Scm_Git_Action_FetchTest extends PHPUnit_Framework_TestCase {
+class FetchTest extends \PHPUnit_Framework_TestCase {
     
     function testExecute() {
-        $exec = $this->getMockBuilder('Raggle_Exec')
+        $exec = $this->getMockBuilder('Raggle\Executor')
             ->disableOriginalConstructor()
             ->getMock();
         $exec
@@ -13,7 +15,7 @@ class Raggle_Scm_Git_Action_FetchTest extends PHPUnit_Framework_TestCase {
             ->method('execute')
             ->with('git fetch -t fetchTest/GitRepo');
 
-        $git_repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+        $git_repo = $this->getMockBuilder('Raggle\Scm\Repository\Git')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -22,7 +24,7 @@ class Raggle_Scm_Git_Action_FetchTest extends PHPUnit_Framework_TestCase {
             ->method('getName')
             ->will($this->returnValue('GitRepo'));
             
-        $git_fetch = new Raggle_Scm_Git_Action_Fetch(
+        $git_fetch = new Fetch(
             'fetchTest',
             $exec
         );

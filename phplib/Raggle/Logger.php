@@ -1,6 +1,8 @@
-<?php
+<?php 
 
-class Raggle_Logger {
+namespace Raggle;
+
+class Logger {
 
     private $printers;
     

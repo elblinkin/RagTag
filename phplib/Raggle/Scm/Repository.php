@@ -1,6 +1,8 @@
 <?php
 
-interface Raggle_Scm_Repository {
+namespace Raggle\Scm;
+
+interface Repository {
 
     /**
      * Returns the name of the repository.

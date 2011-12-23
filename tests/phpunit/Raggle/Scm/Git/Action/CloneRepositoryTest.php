@@ -1,9 +1,11 @@
 <?php
 
+namespace Raggle\Scm\Git\Action;
+
 require_once 'Autoload.php';
 require_once 'vfsStream/vfsStream.php';
 
-class Raggle_Scm_Git_ActionCloneTest extends PHPUnit_Framework_TestCase {
+class CloneRepositoryTest extends \PHPUnit_Framework_TestCase {
 
     private $git_clone;
     private $exec;
@@ -11,18 +13,18 @@ class Raggle_Scm_Git_ActionCloneTest extends PHPUnit_Framework_TestCase {
     
     protected function setUp() {
         parent::setUp();
-        vfsStream::setup('cloneTest');
+        \vfsStream::setup('cloneTest');
         
-        $this->exec = $this->getMockBuilder('Raggle_Exec')
+        $this->exec = $this->getMockBuilder('Raggle\Executor')
             ->disableOriginalConstructor()
             ->getMock();
         
-        $this->git_clone = new Raggle_Scm_Git_Action_Clone(
-            vfsStream::url('cloneTest'),
+        $this->git_clone = new CloneRepository(
+            \vfsStream::url('cloneTest'),
             $this->exec
         );
         
-        $this->git_repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+        $this->git_repo = $this->getMockBuilder('Raggle\Scm\Repository\Git')
             ->disableOriginalConstructor()
             ->getMock();
             
@@ -43,9 +45,9 @@ class Raggle_Scm_Git_ActionCloneTest extends PHPUnit_Framework_TestCase {
     }
     
     function testExecute_dirExists() {
-        vfsStream::setup('cloneTest');
-        vfsStream::newDirectory('GitRepo')->at(vfsStreamWrapper::getRoot());
-        $url = vfsStream::url('cloneTest/GitRepo');
+        \vfsStream::setup('cloneTest');
+        \vfsStream::newDirectory('GitRepo')->at(\vfsStreamWrapper::getRoot());
+        $url = \vfsStream::url('cloneTest/GitRepo');
         
         $this->exec
             ->expects($this->at(0))
@@ -72,8 +74,8 @@ class Raggle_Scm_Git_ActionCloneTest extends PHPUnit_Framework_TestCase {
     }
     
     function testExecute_cleanSlate() {
-        vfsStream::setup('cloneTest');
-        $url = vfsStream::url('cloneTest/GitRepo');
+        \vfsStream::setup('cloneTest');
+        $url = \vfsStream::url('cloneTest/GitRepo');
             
         $this->exec
             ->expects($this->at(0))

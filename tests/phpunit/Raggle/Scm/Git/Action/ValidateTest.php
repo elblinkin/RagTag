@@ -1,8 +1,10 @@
 <?php
 
+namespace Raggle\Scm\Git\Action;
+
 require_once 'Autoload.php';
 
-class Raggle_Scm_Git_Action_ValidateTest extends PHPUnit_Framework_TestCase {
+class ValidateTest extends \PHPUnit_Framework_TestCase {
 
     private $exec;
     private $logger;
@@ -11,15 +13,15 @@ class Raggle_Scm_Git_Action_ValidateTest extends PHPUnit_Framework_TestCase {
     
     protected function setUp() {
         parent::setUp();
-        $this->exec = $this->getMockBuilder('Raggle_Exec')
+        $this->exec = $this->getMockBuilder('Raggle\Executor')
             ->disableOriginalConstructor()
             ->getMock();
             
-        $this->logger = $this->getMockBuilder('Raggle_Logger')
+        $this->logger = $this->getMockBuilder('Raggle\Logger')
             ->disableOriginalConstructor()
             ->getMock();
             
-        $this->git_repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+        $this->git_repo = $this->getMockBuilder('Raggle\Scm\Repository\Git')
             ->disableOriginalConstructor()
             ->getMock();
             
@@ -38,7 +40,7 @@ class Raggle_Scm_Git_Action_ValidateTest extends PHPUnit_Framework_TestCase {
             ->method('getUrl')
             ->will($this->returnValue('git://localhost:GitRepo'));
             
-        $this->git_validate = new Raggle_Scm_Git_Action_Validate(
+        $this->git_validate = new Validate(
             'validateTest',
             $this->exec,
             $this->logger

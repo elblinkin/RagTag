@@ -1,6 +1,10 @@
 <?php
 
-class Raggle_Scm_Git_Action_LogTest extends PHPUnit_Framework_TestCase {
+namespace Raggle\Scm\Git\Action;
+
+require_once 'Autoload.php';
+
+class LogTest extends \PHPUnit_Framework_TestCase {
 
     private $git_log;
     private $exec;
@@ -10,16 +14,16 @@ class Raggle_Scm_Git_Action_LogTest extends PHPUnit_Framework_TestCase {
     function setUp() {
         parent::setUp();
         
-        $this->exec = $this->getMockBuilder('Raggle_Exec')
+        $this->exec = $this->getMockBuilder('Raggle\Executor')
             ->disableOriginalConstructor()
             ->getMock();
             
-        $this->git_log = new Raggle_Scm_Git_Action_Log(
+        $this->git_log = new Log(
             'logTest',
             $this->exec
         );
         
-        $this->git_repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+        $this->git_repo = $this->getMockBuilder('Raggle\Scm\Repository\Git')
             ->disableOriginalConstructor()
             ->getMock();
             

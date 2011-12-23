@@ -1,8 +1,10 @@
 <?php
 
+namespace Raggle\Printer;
+
 require_once 'Autoload.php';
 
-class Raggle_Printer_GearmanTest extends PHPUnit_Framework_TestCase {
+class GearmanTest extends \PHPUnit_Framework_TestCase {
 
     function testWrite() {
         $job = $this->getMock('GearmanJob');
@@ -11,7 +13,7 @@ class Raggle_Printer_GearmanTest extends PHPUnit_Framework_TestCase {
             ->method('sendData')
             ->with('Hello World');
             
-        $printer = new Raggle_Printer_Gearman($job);
+        $printer = new Gearman($job);
         $printer->write('Hello World');
     }
 }

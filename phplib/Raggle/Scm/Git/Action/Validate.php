@@ -1,6 +1,11 @@
 <?php
 
-class Raggle_Scm_Git_Action_Validate {
+namespace Raggle\Scm\Git\Action;
+use Raggle\Executor;
+use Raggle\Logger;
+use Raggle\Scm\Repository;
+
+class Validate {
 
     const FETCH_URL = "@Fetch URL: (\S+)@";
     const REMOTE_START = "@Remote branch(es)?:@";
@@ -12,8 +17,8 @@ class Raggle_Scm_Git_Action_Validate {
     
     function __construct(
         $root_dir,
-        Raggle_Exec $exec,
-        Raggle_Logger $logger
+        Executor $exec,
+        Logger $logger
     ) {
         $this->root_dir = $root_dir;
         $this->exec = $exec;
@@ -21,7 +26,7 @@ class Raggle_Scm_Git_Action_Validate {
     }
     
     function execute(
-        Raggle_Scm_Repository_Git $git
+        Repository\Git $git
     ) {
         $repo_dir = $this->root_dir . '/' . $git->getName();
         $this->exec->execute(
@@ -34,7 +39,7 @@ class Raggle_Scm_Git_Action_Validate {
     }
     
     function _execute(
-        Raggle_Scm_Repository_Git $git,
+        Repository\Git $git,
         $output,
         $return_var
     ) {

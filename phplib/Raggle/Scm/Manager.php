@@ -1,6 +1,8 @@
 <?php
 
-class Raggle_Scm_Manager {
+namespace Raggle\Scm;
+
+class Manager {
 
     private $scm_map;
     

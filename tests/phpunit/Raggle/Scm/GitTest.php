@@ -1,8 +1,10 @@
 <?php
 
+namespace Raggle\Scm;
+
 require_once 'Autoload.php';
 
-class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
+class GitTest extends \PHPUnit_Framework_TestCase {
 
     private $git_checkout;
     private $git_clean;
@@ -20,47 +22,47 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
     protected function setUp() {
         parent::setUp();
         
-        $this->git_checkout = $this->getMockBuilder('Raggle_Scm_Git_Action_Checkout')
+        $this->git_checkout = $this->getMockBuilder('Raggle\Scm\Git\Action\Checkout')
             ->disableOriginalConstructor()
             ->getMock();
             
-        $this->git_clean = $this->getMockBuilder('Raggle_Scm_Git_Action_Clean')
+        $this->git_clean = $this->getMockBuilder('Raggle\Scm\Git\Action\Clean')
             ->disableOriginalConstructor()
             ->getMock();
         
-        $this->git_clone = $this->getMockBuilder('Raggle_Scm_Git_Action_Clone')
+        $this->git_clone = $this->getMockBuilder('Raggle\Scm\Git\Action\CloneRepository')
             ->disableOriginalConstructor()
             ->getMock();
         
-        $this->git_exists = $this->getMockBuilder('Raggle_Scm_Git_Action_Exists')
+        $this->git_exists = $this->getMockBuilder('Raggle\Scm\Git\Action\Exists')
             ->disableOriginalConstructor()
             ->getMock();
         
-        $this->git_fetch = $this->getMockBuilder('Raggle_Scm_Git_Action_Fetch')
+        $this->git_fetch = $this->getMockBuilder('Raggle\Scm\Git\Action\Fetch')
             ->disableOriginalConstructor()
             ->getMock();
             
-        $this->git_get_head_sha = $this->getMockBuilder('Raggle_Scm_Git_Action_GetHeadSha')
+        $this->git_get_head_sha = $this->getMockBuilder('Raggle\Scm\Git\Action\GetHeadSha')
             ->disableOriginalConstructor()
             ->getMock();
         
-        $this->git_log = $this->getMockBuilder('Raggle_Scm_Git_Action_Log')
+        $this->git_log = $this->getMockBuilder('Raggle\Scm\Git\Action\Log')
             ->disableOriginalConstructor()
             ->getMock();
         
-        $this->git_validate = $this->getMockBuilder('Raggle_Scm_Git_Action_Validate')
+        $this->git_validate = $this->getMockBuilder('Raggle\Scm\Git\Action\Validate')
             ->disableOriginalConstructor()
             ->getMock();
             
-        $this->logger = $this->getMockBuilder('Raggle_Logger')
+        $this->logger = $this->getMockBuilder('Raggle\Logger')
             ->disableOriginalConstructor()
             ->getMock();
             
-        $this->repo = $this->getMockBuilder('Raggle_Scm_Repository_Git')
+        $this->repo = $this->getMockBuilder('Raggle\Scm\Repository\Git')
             ->disableOriginalConstructor()
             ->getMock();
             
-        $this->git = new Raggle_Scm_Git(
+        $this->git = new Git(
             $this->git_checkout,
             $this->git_clean,
             $this->git_clone,
@@ -78,7 +80,7 @@ class Raggle_Scm_GitTest extends PHPUnit_Framework_TestCase {
      * @expectedExceptionMessage Expected a Raggle_Scm_Repository_Git
      */
     function testCheckout_notGitRepo() {
-        $repo = $this->getMock('Raggle_Scm_Repository');
+        $repo = $this->getMock('Raggle\Scm\Repository');
         $this->git->checkout($repo);
     }
     

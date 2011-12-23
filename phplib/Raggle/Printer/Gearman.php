@@ -1,10 +1,12 @@
 <?php
 
-class Raggle_Printer_Gearman implements Raggle_Printer {
+namespace Raggle\Printer;
+
+class Gearman implements \Raggle\Printer {
 
     private $job;
     
-    function __construct(GearmanJob $job) {
+    function __construct(\GearmanJob $job) {
         $this->job = $job;
     }
     

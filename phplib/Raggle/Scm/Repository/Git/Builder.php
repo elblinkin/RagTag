@@ -1,6 +1,8 @@
 <?php
 
-class Raggle_Scm_Repository_Git_Builder {
+namespace Raggle\Scm\Repository;
+
+class Git_Builder {
 
     private $name;
     private $url;
@@ -23,16 +25,16 @@ class Raggle_Scm_Repository_Git_Builder {
     
     function build() {
         if (!isset($this->name)) {
-            throw new UnexpectedValueException('$name must not be null');
+            throw new \UnexpectedValueException('$name must not be null');
         }
         if (!isset($this->url)) {
-            throw new UnexpectedValueException('Must specify repository url');
+            throw new \UnexpectedValueException('Must specify repository url');
         }
         if (!isset($this->branches) || empty($this->branches)) {
-            throw new UnexpectedValueException('Must specify at least one branch');
+            throw new \UnexpectedValueException('Must specify at least one branch');
         }
         
-        $git = new Raggle_Scm_Repository_Git(
+        $git = new Git(
             $this->name,
             $this->url,
             $this->branches
