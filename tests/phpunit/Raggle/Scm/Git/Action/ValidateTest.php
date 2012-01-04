@@ -13,11 +13,11 @@ class ValidateTest extends \PHPUnit_Framework_TestCase {
     
     protected function setUp() {
         parent::setUp();
-        $this->exec = $this->getMockBuilder('Raggle\Executor')
+        $this->exec = $this->getMockBuilder('RagTag\Executor')
             ->disableOriginalConstructor()
             ->getMock();
             
-        $this->logger = $this->getMockBuilder('Raggle\Logger')
+        $this->logger = $this->getMockBuilder('RagTag\Logger')
             ->disableOriginalConstructor()
             ->getMock();
             

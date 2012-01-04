@@ -15,7 +15,7 @@ class ExistsTest extends \PHPUnit_Framework_TestCase {
         parent::setUp();
         \vfsStream::setup('existsTest');
         
-        $this->logger = $this->getMockBuilder('Raggle\Logger')
+        $this->logger = $this->getMockBuilder('RagTag\Logger')
             ->disableOriginalConstructor()
             ->getMock();
         

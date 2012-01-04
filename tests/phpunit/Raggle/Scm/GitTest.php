@@ -54,7 +54,7 @@ class GitTest extends \PHPUnit_Framework_TestCase {
             ->disableOriginalConstructor()
             ->getMock();
             
-        $this->logger = $this->getMockBuilder('Raggle\Logger')
+        $this->logger = $this->getMockBuilder('RagTag\Logger')
             ->disableOriginalConstructor()
             ->getMock();
             

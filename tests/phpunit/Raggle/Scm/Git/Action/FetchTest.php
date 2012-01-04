@@ -7,7 +7,7 @@ require_once 'Autoload.php';
 class FetchTest extends \PHPUnit_Framework_TestCase {
     
     function testExecute() {
-        $exec = $this->getMockBuilder('Raggle\Executor')
+        $exec = $this->getMockBuilder('RagTag\Executor')
             ->disableOriginalConstructor()
             ->getMock();
         $exec

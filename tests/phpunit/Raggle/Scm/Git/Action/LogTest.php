@@ -14,7 +14,7 @@ class LogTest extends \PHPUnit_Framework_TestCase {
     function setUp() {
         parent::setUp();
         
-        $this->exec = $this->getMockBuilder('Raggle\Executor')
+        $this->exec = $this->getMockBuilder('RagTag\Executor')
             ->disableOriginalConstructor()
             ->getMock();
             

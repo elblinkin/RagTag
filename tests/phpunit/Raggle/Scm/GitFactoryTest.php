@@ -7,10 +7,10 @@ require_once 'Autoload.php';
 class GitFactoryTest extends \PHPUnit_Framework_TestCase {
 
     public function testCreate() {
-        $exec = $this->getMockBuilder('Raggle\Executor')
+        $exec = $this->getMockBuilder('RagTag\Executor')
             ->disableOriginalConstructor()
             ->getMock();
-        $logger = $this->getMockBuilder('Raggle\Logger')
+        $logger = $this->getMockBuilder('RagTag\Logger')
             ->disableOriginalConstructor()
             ->getMock();
             

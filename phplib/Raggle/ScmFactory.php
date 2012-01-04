@@ -1,8 +1,8 @@
 <?php
 
 namespace Raggle;
-use Raggle\Executor;
-use Raggle\Logger;
+use RagTag\Executor;
+use RagTag\Logger;
 
 interface ScmFactory {
 

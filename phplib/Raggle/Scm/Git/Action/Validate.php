@@ -1,9 +1,9 @@
 <?php
 
 namespace Raggle\Scm\Git\Action;
-use Raggle\Executor;
-use Raggle\Logger;
 use Raggle\Scm\Repository;
+use RagTag\Executor;
+use RagTag\Logger;
 
 class Validate {
 

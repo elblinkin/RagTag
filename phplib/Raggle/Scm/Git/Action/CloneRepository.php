@@ -1,8 +1,8 @@
 <?php
 
 namespace Raggle\Scm\Git\Action;
-use Raggle\Executor;
 use Raggle\Scm\Repository;
+use RagTag\Executor;
 
 class CloneRepository {
 

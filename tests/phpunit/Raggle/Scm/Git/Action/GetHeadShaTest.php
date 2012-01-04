@@ -8,7 +8,7 @@ class GetHeadShaTest extends \PHPUnit_Framework_TestCase {
 
     function testExecute() {
         $expected_sha = '3ee75a23bc81b5340ce1b3627e5a3516a471c796';
-        $exec = $this->getMockBuilder('Raggle\Executor')
+        $exec = $this->getMockBuilder('RagTag\Executor')
             ->disableOriginalConstructor()
             ->getMock();
         $exec

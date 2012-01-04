@@ -1,9 +1,9 @@
 <?php
 
 namespace Raggle\Scm;
-use Raggle\Logger;
 use Raggle\Scm\Git\Action;
 use Raggle\Scm\Repository;
+use RagTag\Logger;
 
 class Git implements \Raggle\Scm {
 

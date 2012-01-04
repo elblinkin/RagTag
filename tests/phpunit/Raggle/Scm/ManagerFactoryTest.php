@@ -13,10 +13,10 @@ class ManagerFactoryTest extends \PHPUnit_Framework_TestCase {
     function setUp() {
         parent::setUp();
         $this->root_dir = 'factoryTest';
-        $this->exec = $this->getMockBuilder('Raggle\Executor')
+        $this->exec = $this->getMockBuilder('RagTag\Executor')
             ->disableOriginalConstructor()
             ->getMock();
-        $this->logger = $this->getMockBuilder('Raggle\Logger')
+        $this->logger = $this->getMockBuilder('RagTag\Logger')
             ->disableOriginalConstructor()
             ->getMock();
     }

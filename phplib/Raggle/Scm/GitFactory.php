@@ -1,9 +1,9 @@
 <?php
 
 namespace Raggle\Scm;
-use Raggle\Executor;
-use Raggle\Logger;
 use Raggle\Scm\Git\Action;
+use RagTag\Executor;
+use RagTag\Logger;
 
 class GitFactory implements \Raggle\ScmFactory {
 

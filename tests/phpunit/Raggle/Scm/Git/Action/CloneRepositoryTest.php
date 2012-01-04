@@ -15,7 +15,7 @@ class CloneRepositoryTest extends \PHPUnit_Framework_TestCase {
         parent::setUp();
         \vfsStream::setup('cloneTest');
         
-        $this->exec = $this->getMockBuilder('Raggle\Executor')
+        $this->exec = $this->getMockBuilder('RagTag\Executor')
             ->disableOriginalConstructor()
             ->getMock();
         
