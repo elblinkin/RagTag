@@ -1,10 +1,12 @@
 <?php
 
-class Taggle_Normalizer_File implements Taggle_Normalizer {
+namespace Taggle\Normalizer;
+
+class FileName implements \Taggle\Normalizer {
 
     private $top_level;
     
-    function __construct(array $top_level) {
+    function __construct(array $top_level = array()) {
         $this->top_level = $top_level;
     }
     

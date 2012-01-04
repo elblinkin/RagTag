@@ -1,6 +1,10 @@
 <?php
 
-class Taggle_Blamer_Git implements Taggle_Blamer {
+namespace Taggle\Blamer;
+
+use Taggle\Normalizer\FileName as FileNameNormalizer;
+
+class Git implements \Taggle\Blamer {
 
     const SHA_REGEX = '@([0-9a-z]{40}) ([0-9]+) ([0-9]+) ([0-9]+)@';
     const EMAIL_REGEX = '/author-mail <(.*)>/';
@@ -12,7 +16,7 @@ class Taggle_Blamer_Git implements Taggle_Blamer {
     public function __construct(
         $sha,
         $source_root,
-        Taggle_Normalizer_File $file_normalizer
+        FileNameNormalizer $file_normalizer
     ) {
         $this->sha = $sha;
         $this->source_root = $source_root;

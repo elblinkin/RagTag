@@ -1,6 +1,8 @@
 <?php
 
-interface Taggle_Normalizer {
+namespace Taggle;
+
+interface Normalizer {
 
     function normalize($input);
 }
