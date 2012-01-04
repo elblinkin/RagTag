@@ -2,6 +2,7 @@
 
 namespace Taggle\Blamer;
 
+use RagTag\Executor;
 use Taggle\Normalizer\FileName as FileNameNormalizer;
 
 class Git implements \Taggle\Blamer {
@@ -12,15 +13,18 @@ class Git implements \Taggle\Blamer {
     private $sha;
     private $source_root;
     private $file_normalizer;
+    private $executor;
     
     public function __construct(
         $sha,
         $source_root,
-        FileNameNormalizer $file_normalizer
+        FileNameNormalizer $file_normalizer,
+        Executor $executor
     ) {
         $this->sha = $sha;
         $this->source_root = $source_root;
         $this->file_normalizer = $file_normalizer;
+        $this->executor = $executor;
     }
 
     public function getBlame(
@@ -37,13 +41,13 @@ class Git implements \Taggle\Blamer {
 
         $blames = array();
 
-        exec("wc -l $filename", $output);
+        $this->executor->execute("cd $this->source_root; wc -l $filename", $output);
         $file_length = explode(' ', trim($output[0]));
         if ($file_length[0] < $end_line) {
             return $blames;
         }
 
-        exec("git blame -p -L$start_line,$end_line $this->sha $filename", $output);
+        $this->executor->execute("cd $this->source_root; git blame -p -L$start_line,$end_line $this->sha $filename", $output);
         foreach ($output as $line) {
             if (preg_match(self::SHA_REGEX, $line, $matches)) {
                 $revision = $matches[1];

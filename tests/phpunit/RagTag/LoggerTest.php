@@ -1,6 +1,6 @@
 <?php
 
-namespace Raggle;
+namespace RagTag;
 
 require_once 'Autoload.php';
 
@@ -11,7 +11,7 @@ class LoggerTest extends \PHPUnit_Framework_TestCase {
     
     function setUp() {
         parent::setUp();
-        $this->printer = $this->getMock('Raggle\Printer');
+        $this->printer = $this->getMock('RagTag\Printer');
         $this->logger = new Logger(array($this->printer));
     }
     
@@ -61,8 +61,8 @@ class LoggerTest extends \PHPUnit_Framework_TestCase {
     }
     
     function testLogError_teed() {
-        $printer_a = $this->getMock('Raggle\Printer');
-        $printer_b = $this->getMock('Raggle\Printer');
+        $printer_a = $this->getMock('RagTag\Printer');
+        $printer_b = $this->getMock('RagTag\Printer');
         
         $printer_a
             ->expects($this->once())

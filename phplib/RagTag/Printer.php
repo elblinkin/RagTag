@@ -1,6 +1,6 @@
 <?php
 
-namespace Raggle;
+namespace RagTag;
 
 interface Printer {
 

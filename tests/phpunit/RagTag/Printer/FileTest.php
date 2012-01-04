@@ -1,6 +1,6 @@
 <?php
 
-namespace Raggle\Printer;
+namespace RagTag\Printer;
 
 require_once 'Autoload.php';
 require_once 'vfsStream/vfsStream.php';

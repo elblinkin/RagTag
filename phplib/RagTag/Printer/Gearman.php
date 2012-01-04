@@ -1,8 +1,8 @@
 <?php
 
-namespace Raggle\Printer;
+namespace RagTag\Printer;
 
-class Gearman implements \Raggle\Printer {
+class Gearman implements \RagTag\Printer {
 
     private $job;
     

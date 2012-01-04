@@ -1,6 +1,6 @@
 <?php
 
-namespace Raggle;
+namespace RagTag;
 
 require_once 'Autoload.php';
 
@@ -11,7 +11,7 @@ class ExecutorTest extends \PHPUnit_Framework_TestCase {
     
     protected function setUp() {
         parent::setUp();
-        $this->logger = $this->getMockBuilder('Raggle\Logger')
+        $this->logger = $this->getMockBuilder('RagTag\Logger')
             ->disableOriginalConstructor()
             ->getMock();
         

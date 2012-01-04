@@ -1,6 +1,8 @@
 <?php
 
-interface Taggle_Blamer {
+namespace Taggle;
+
+interface Blamer {
 
     function getBlame(
         $filename,
