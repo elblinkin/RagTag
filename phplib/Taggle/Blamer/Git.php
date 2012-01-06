@@ -37,7 +37,6 @@ class Git implements \Taggle\Blamer {
         if ($end_line === null) {
             $end_line = $start_line;
         }
-        chdir($this->source_root);
 
         $blames = array();
 
