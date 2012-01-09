@@ -1,6 +1,8 @@
 <?php
 
-interface Taggle_Store {
+namespace Taggle;
+
+interface Store {
 
     function getDocument($doc_id);
     

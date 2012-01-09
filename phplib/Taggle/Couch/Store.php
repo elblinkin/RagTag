@@ -1,11 +1,13 @@
 <?php
 
-class Taggle_Couch_Store implements Taggle_Store {
+namespace Taggle\Couch;
+
+class Store implements \Taggle\Store {
 
     private $client;
     
     function __construct(
-        CouchdbClient $client
+        /*\CouchdbClient*/ $client
     ) {
         $this->client = $client;
     }
