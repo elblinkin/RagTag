@@ -1,6 +1,8 @@
 <?php
 
-interface Taggle_Document_Processor {
+namespace Taggle\Document;
+
+interface Processor {
 
     /**
      * @param string|array $input file or array to be processed into logs.

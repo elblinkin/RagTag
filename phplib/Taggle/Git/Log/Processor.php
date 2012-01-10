@@ -1,10 +1,12 @@
 <?php
-require_once 'Autoload.php';
-class Taggle_Git_Log_Processor implements Taggle_Document_Processor {
+
+namespace Taggle\Git\Log;
+
+class Processor implements \Taggle\Document\Processor {
 
     private $store;
     
-    function __construct(Taggle_Store $store) {
+    function __construct(/*\Taggle\Store*/ $store) {
         $this->store = $store;
     }
 
