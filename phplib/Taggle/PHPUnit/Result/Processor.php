@@ -1,10 +1,14 @@
 <?php
 
-class Taggle_PHPUnit_Result_Processor implements Taggle_Document_Processor {
+namespace Taggle\PHPUnit\Result;
+
+use Taggle\Store;
+
+class Processor implements \Taggle\Document\Processor {
 
     private $store;
 
-    function __construct(Taggle_Store $store) {
+    function __construct(Store $store) {
         $this->store = $store;
     }
 
