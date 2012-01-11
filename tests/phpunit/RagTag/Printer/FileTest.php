@@ -5,13 +5,16 @@ namespace RagTag\Printer;
 require_once 'Autoload.php';
 require_once 'vfsStream/vfsStream.php';
 
+use vfsStream;
+use vfsStreamWrapper;
+
 class FileTest extends \PHPUnit_Framework_TestCase {
 
     function testWrite() {
-        \vfsStream::setup('fileTest');
-        \vfsStream::newFile('console.log')->at(\vfsStreamWrapper::getRoot());
+        vfsStream::setup('fileTest');
+        vfsStream::newFile('console.log')->at(vfsStreamWrapper::getRoot());
         
-        $filename = \vfsStream::url('fileTest/console.log');
+        $filename = vfsStream::url('fileTest/console.log');
         $fp = fopen($filename, 'a');
         $printer = new File($fp);
         $printer->write('Hello World');
