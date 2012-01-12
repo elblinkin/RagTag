@@ -2,7 +2,9 @@
 
 namespace Raggle\Report\Template;
 
-class TemplateBuilder {
+use Raggle\Report\Processor\Manager as ProcessorManager;
+
+class Builder {
 
     private $processor_manager;
     

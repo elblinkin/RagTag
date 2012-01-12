@@ -13,10 +13,11 @@ class GitFactoryTest extends \PHPUnit_Framework_TestCase {
         $logger = $this->getMockBuilder('RagTag\Logger')
             ->disableOriginalConstructor()
             ->getMock();
+        $store = $this->getMock('Taggle\Store');
             
         $factory = new GitFactory();
         
-        $git = $factory->create('/root', $exec, $logger);
+        $git = $factory->create('/root', $exec, $logger, $store);
         
         $this->assertInstanceOf('Raggle\Scm\Git', $git);
     }

@@ -9,6 +9,7 @@ class ManagerFactoryTest extends \PHPUnit_Framework_TestCase {
     private $root_dir;
     private $exec;
     private $logger;
+    private $store;
     
     function setUp() {
         parent::setUp();
@@ -19,6 +20,7 @@ class ManagerFactoryTest extends \PHPUnit_Framework_TestCase {
         $this->logger = $this->getMockBuilder('RagTag\Logger')
             ->disableOriginalConstructor()
             ->getMock();
+        $this->store = $this->getMock('Taggle\Store');
     }
     
     function testCreate_nothing() {
@@ -26,6 +28,7 @@ class ManagerFactoryTest extends \PHPUnit_Framework_TestCase {
             $this->root_dir,
             $this->exec,
             $this->logger,
+            $this->store,
             array()
         );
         $this->assertInstanceof('Raggle\Scm\Manager', $factory->create());
@@ -44,13 +47,14 @@ class ManagerFactoryTest extends \PHPUnit_Framework_TestCase {
         $sub_factory
             ->expects($this->atLeastonce())
             ->method('create')
-            ->with($this->root_dir, $this->exec, $this->logger)
+            ->with($this->root_dir, $this->exec, $this->logger, $this->store)
             ->will($this->returnValue($scm));
         
         $factory = new ManagerFactory(
             $this->root_dir,
             $this->exec,
             $this->logger,
+            $this->store,
             array($sub_factory)
         );
         
@@ -70,7 +74,7 @@ class ManagerFactoryTest extends \PHPUnit_Framework_TestCase {
         $sub_factory_a
             ->expects($this->atLeastonce())
             ->method('create')
-            ->with($this->root_dir, $this->exec, $this->logger)
+            ->with($this->root_dir, $this->exec, $this->logger, $this->store)
             ->will($this->returnValue($scm_a));
             
         $scm_b = $this->getMock('Raggle\Scm');
@@ -92,6 +96,7 @@ class ManagerFactoryTest extends \PHPUnit_Framework_TestCase {
             $this->root_dir,
             $this->exec,
             $this->logger,
+            $this->store,
             array($sub_factory_a, $sub_factory_b)
         );
         

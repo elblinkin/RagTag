@@ -27,4 +27,9 @@ interface Scm {
      * @return string|array either the file name for the log or the log as an array
      */
     function getChangeLog($repo, $start_revision = null, $end_revision = null);
+    
+    /**
+     * @return Taggle\Document\Processor return the processor for the changelog
+     */
+    function getChangeLogProcessor();
 }

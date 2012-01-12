@@ -26,7 +26,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase {
             ->disableOriginalConstructor()
             ->getMock();
         
-        $sub_parser = $this->getMockBuilder('Raggle\Scm\Repository\Git_Parser')
+        $sub_parser = $this->getMockBuilder('Raggle\Scm\Repository\Git\Parser')
             ->disableOriginalConstructor()
             ->getMock();
         $sub_parser
@@ -59,7 +59,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase {
         
         $filename = \vfsStream::url('parserTest/gitRepo.json');
         
-        $sub_parser = $this->getMockBuilder('Raggle\Scm\Repository\Git_Parser')
+        $sub_parser = $this->getMockBuilder('Raggle\Scm\Repository\Git\Parser')
             ->disableOriginalConstructor()
             ->getMock();
             

@@ -15,6 +15,7 @@ class GitTest extends \PHPUnit_Framework_TestCase {
     private $git_log;
     private $git_validate;
     private $logger;
+    private $processor;
     private $repo;
     
     private $git;
@@ -58,6 +59,10 @@ class GitTest extends \PHPUnit_Framework_TestCase {
             ->disableOriginalConstructor()
             ->getMock();
             
+        $this->processor = $this->getMockBuilder('Taggle\Git\Log\Processor')
+            ->disableOriginalConstructor()
+            ->getMock();
+            
         $this->repo = $this->getMockBuilder('Raggle\Scm\Repository\Git')
             ->disableOriginalConstructor()
             ->getMock();
@@ -71,7 +76,8 @@ class GitTest extends \PHPUnit_Framework_TestCase {
             $this->git_get_head_sha,
             $this->git_log,
             $this->git_validate,
-            $this->logger
+            $this->logger,
+            $this->processor
         );
     }
     

@@ -1,18 +1,19 @@
 <?php
 
-namespace Raggle\Scm\Repository;
+namespace Raggle\Scm\Repository\Git;
 
-class Git_Parser {
+class Parser {
 
     private $builder;
     
-    function __construct(Git_Builder $builder) {
+    function __construct(Builder $builder) {
         $this->builder = $builder;
     }
     
     function parse($scm_json) {
         return $this->builder
             ->setName($scm_json->name)
+            ->setScm($scm_json->scm)
             ->setUrl($scm_json->url)
             ->setBranches($scm_json->branches)
             ->build();
