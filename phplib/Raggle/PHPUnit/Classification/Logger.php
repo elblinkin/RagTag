@@ -16,9 +16,10 @@ class Logger
 extends PHPUnit_Util_Printer
 implements PHPUnit_Framework_TestListener {
 
-    private $currentTestSuiteName = '';
-    private $currentTestName = '';
-    private $currentTestStatus = 'executed';
+    private $current_test_suite_name = '';
+    private $current_test_name = '';
+    private $current_test_status = 'executed';
+    private $current_test_exception_message = '';
 
     public function __construct($out) {
         parent::__construct($out);
@@ -43,7 +44,8 @@ implements PHPUnit_Framework_TestListener {
         Exception $e,
         $time) {
 
-        $this->currentTestStatus = 'incomplete';
+        $this->current_test_status = 'incomplete';
+        $this->current_test_exception_msseage = $e->getMessage();
     }
 
     public function addSkippedTest(
@@ -51,22 +53,23 @@ implements PHPUnit_Framework_TestListener {
         Exception $e,
         $time) {
 
-        $this->currentTestStatus = 'skipped';
+        $this->current_test_status = 'skipped';
+        $this->current_test_exception_message = $e->getMessage();
     }
 
     public function startTestSuite(PHPUnit_Framework_TestSuite $suite) {
-        $this->currentTestSuiteName = $suite->getName();
-        $this->currentTestName = '';
+        $this->current_test_suite_name = $suite->getName();
+        $this->current_test_name = '';
     }
 
     public function endTestSuite(PHPUnit_Framework_TestSuite $suite) {
-        $this->currentTestSuiteName = '';
-        $this->currentTestName = '';
+        $this->current_test_suite_name = '';
+        $this->current_test_name = '';
     }
 
     public function startTest(PHPUnit_Framework_Test $test) {
-        $this->currentTestName = PHPUnit_Util_Test::describe($test);
-        $this->currentTestStatus = 'executed';
+        $this->current_test_name = PHPUnit_Util_Test::describe($test);
+        $this->current_test_status = 'executed';
     }
 
     public function endTest(PHPUnit_Framework_Test $test, $time) {
@@ -117,13 +120,14 @@ implements PHPUnit_Framework_TestListener {
 
         $this->write(
             array(
-                'suite' => $this->currentTestSuiteName,
-                'test' => $this->currentTestName,
+                'suite' => $this->current_test_suite_name,
+                'test' => $this->current_test_name,
                 'file_name' => $fileName,
                 'start_line' => $startLine,
                 'end_line' => $endLine,
-                'exec_status' => $this->currentTestStatus,
+                'exec_status' => $this->current_test_status,
                 'annotations' => $annotations,
+                'message' => $this->current_test_exception_message,
             )
         );
     }
