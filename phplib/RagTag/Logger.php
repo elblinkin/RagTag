@@ -10,15 +10,11 @@ class Logger {
         $this->printers = $printers;
     }
     
-    function logCommand($command) {
-        $this->tee(sprintf(" + %s\n", $command));
-    }
-
-    function logReturn($output, $return_var) {
+    function logCommand(array $output, $return_var) {
         foreach ($output as $line) {
-            $this->tee(sprintf("\t%s\n", $line));
+            $this->tee($line . "\n");
         }
-        $this->tee(sprintf("\tReturn Value:  %s\n", $return_var));
+        $this->tee(sprintf("Return Value:  %s\n", $return_var));
     }
     
     function logInfo($message) {

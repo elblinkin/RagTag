@@ -22,11 +22,7 @@ class ExecutorTest extends \PHPUnit_Framework_TestCase {
         $this->logger
             ->expects($this->any())
             ->method('logCommand')
-            ->with('echo testing');
-        $this->logger
-            ->expects($this->any())
-            ->method('logReturn')
-            ->with(array('testing'), 0);
+            ->with(array('+ echo testing', 'testing'), 0);
             
         $this->exec->execute('echo testing');
     }
@@ -35,25 +31,17 @@ class ExecutorTest extends \PHPUnit_Framework_TestCase {
         $this->logger
             ->expects($this->any())
             ->method('logCommand')
-            ->with('echo testing');
-        $this->logger
-            ->expects($this->any())
-            ->method('logReturn')
-            ->with(array('testing'), 0);
+            ->with(array('+ echo testing', 'testing'), 0);
             
         $this->exec->execute('echo testing', $output);
-        $this->assertEquals(array('testing'), $output);
+        $this->assertEquals(array('+ echo testing', 'testing'), $output);
     }
     
     function testExecute_captureReturnValue() {
         $this->logger
             ->expects($this->any())
             ->method('logCommand')
-            ->with('echo testing');
-        $this->logger
-            ->expects($this->any())
-            ->method('logReturn')
-            ->with(array('testing'), 0);
+            ->with(array('+ echo testing', 'testing'), 0);
             
         $this->exec->execute('echo testing', $output, $return_value);
         $this->assertEquals(0, $return_value);

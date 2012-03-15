@@ -17,29 +17,15 @@ class LoggerTest extends \PHPUnit_Framework_TestCase {
     
     function testLogCommand() {
         $this->printer
-            ->expects($this->once())
+            ->expects($this->at(0))
             ->method('write')
-            ->with(" + ls -l\n");
-            
-        $this->logger->logCommand('ls -l');
-    }
-    
-    function testLogReturn_noOutput() {
+            ->with("+ ls -l\n");
         $this->printer
-            ->expects($this->once())
+            ->expects($this->at(1))
             ->method('write')
-            ->with("\tReturn Value:  215\n");
-        
-        $this->logger->logReturn(array(), 215);
-    }
-    
-    function testLogReturn_multiLine() {
-        $this->printer
-            ->expects($this->exactly(3))
-            ->method('write')
-            ->with($this->logicalOr("\tfoo\n", "\tbar\n", "\tReturn Value:  215\n"));
+            ->with("Return Value:  2\n");
             
-        $this->logger->logReturn(array('foo', 'bar'), 215);
+        $this->logger->logCommand(array('+ ls -l'), 2);
     }
     
     function testLogInfo() {

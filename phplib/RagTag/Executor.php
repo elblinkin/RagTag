@@ -13,8 +13,7 @@ class Executor {
     }
 
     function execute($command, &$output = null, &$return_var = null) {
-        $this->logger->logCommand($command);
-        exec($command, $output, $return_var);
-        $this->logger->logReturn($output, $return_var);
+        exec("echo '$command' | bash -x 2>&1", $output, $return_var);
+        $this->logger->logCommand($output, $return_var);
     }
 }
